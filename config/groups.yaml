@@ -1,0 +1,77 @@
+entrance:
+  name: Entrance
+  entities:
+    - light.entrance_wall
+    - light.stairs_wall
+    - light.dinner_table  
+
+kitchen:
+  name: Kitchen
+  entities:
+    - light.kitchen_closets
+    - light.kitchen_cooking
+    - light.kitchen_table
+    - light.kitchen_wall
+
+living:
+  name: Living
+  entities:
+    - light.living_couch
+    - light.living_lone
+    - light.living_office
+
+office:
+  name: Office
+  entities:
+    - light.office
+
+nighthall:
+  name: Night hall
+  entities:
+    - light.night_hall
+
+sibe:
+  name: sibe
+  entities:
+    - light.sibe_bed
+    - light.sibe_ceiling
+
+lone:
+  name: Lone
+  entities:
+    - light.lone_bed
+    - light.lone_ceiling
+
+bathroom:
+  name: Bathroom
+  entities:
+    - light.bathroom_mirror
+    - light.bathroom_ceiling
+
+bedroom:
+  name: Bedroom
+  entities:
+    - light.evelyne_bed
+    - light.peter_bed
+    - light.bedroom_wall
+
+outdoor:
+  name: Outdoor
+  entities:
+    - light.front_door
+    - light.halloween_front_s202
+    - light.back_downstairs
+    - light.back_upstairs
+    - light.pool
+
+outdoor-auto:
+  name: Outdoor Automation
+  entities:
+    - light.front_door
+    - light.halloween_front_s202
+    - light.pool
+
+guestroom:
+  name: Guestroom
+  entities:
+    - light.guest_room

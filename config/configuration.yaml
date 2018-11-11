@@ -1,0 +1,264 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 50.809268
+  longitude: 3.331872
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 30
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Brussels
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: darksky
+    api_key: !secret darksky_apikey
+    monitored_conditions:
+      - summary
+      - temperature
+      - icon
+
+  - platform: 'knx'
+    name: 'Indoor temperature'
+    address: '3/1/8'
+    type: 'temperature'
+
+  - platform: pvoutput
+    system_id: 2652
+    api_key: !secret pvoutput_apikey
+    scan_interval: 150
+
+  - platform: template
+    sensors:
+      energy_generation:
+        value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
+        friendly_name: 'Generated'
+        unit_of_measurement: 'kWh'
+
+# Text to speech
+tts:
+  - platform: google
+
+knx:
+  tunneling:
+    host: '127.0.0.1'
+    port: 3671
+    local_ip: '127.0.0.1'
+
+device_tracker:
+  - platform: owntracks
+      
+light:
+  - platform: mqtt
+    name: "Halloween Front (s20-2)"
+    state_topic: "stat/sonoff-s20-2/POWER"
+    command_topic: "cmnd/sonoff-s20-2/POWER"
+    availability_topic: "tele/sonoff-s20-2/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    name: "Pool"
+    state_topic: "stat/sonoff-pool/POWER1"
+    command_topic: "cmnd/sonoff-pool/POWER"
+    availability_topic: "tele/sonoff-pool/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: false
+    qos: 0
+
+  - platform: "knx"
+    name: "Kitchen cooking"
+    address: "0/0/1"
+    state_address: "0/1/1"
+
+  - platform: "knx"
+    name: "Kitchen closets"
+    address: "0/0/2"
+    state_address: "0/1/2"
+
+  - platform: "knx"
+    name: "Kitchen wall"
+    address: "0/0/3"
+    state_address: "0/1/3"
+
+  - platform: "knx"
+    name: "Kitchen table"
+    address: "1/0/1"
+    state_address: "1/4/1"
+    brightness_address: "1/2/1"
+    brightness_state_address: "1/3/1"
+
+  - platform: "knx"
+    name: "Living Lone"
+    address: "0/0/5"
+    state_address: "0/1/5"
+
+  - platform: "knx"
+    name: "Living couch"
+    address: "1/0/2"
+    state_address: "1/4/2"
+    brightness_address: "1/2/2"
+    brightness_state_address: "1/3/2"
+
+  - platform: "knx"
+    name: "Living office"
+    address: "1/0/4"
+    state_address: "1/4/4"
+    brightness_address: "1/2/4"
+    brightness_state_address: "1/3/4"
+
+  - platform: "knx"
+    name: "Office"
+    address: "0/0/7"
+    state_address: "0/1/7"
+
+  - platform: "knx"
+    name: "Stairs wall"
+    address: "0/0/8"
+    state_address: "0/1/8"
+
+  - platform: "knx"
+    name: "Dinner table"
+    address: "0/0/9"
+    state_address: "0/1/9"
+
+  - platform: "knx"
+    name: "Entrance wall"
+    address: "0/0/10"
+    state_address: "0/1/10"
+
+  - platform: "knx"
+    name: "Lone ceiling"
+    address: "0/0/11"
+    state_address: "0/1/11"
+
+  - platform: "knx"
+    name: "Lone bed"
+    address: "0/0/12"
+    state_address: "0/1/12"
+
+  - platform: "knx"
+    name: "Sibe ceiling"
+    address: "0/0/13"
+    state_address: "0/1/13"
+
+  - platform: "knx"
+    name: "Sibe bed"
+    address: "0/0/14"
+    state_address: "0/1/14"
+
+  - platform: "knx"
+    name: "Guest room"
+    address: "0/0/15"
+    state_address: "0/1/15"
+
+  - platform: "knx"
+    name: "Night hall"
+    address: "0/0/16"
+    state_address: "0/1/16"
+
+  - platform: "knx"
+    name: "Evelyne bed"
+    address: "0/0/17"
+    state_address: "0/1/17"
+
+  - platform: "knx"
+    name: "Peter bed"
+    address: "0/0/18"
+    state_address: "0/1/18"
+
+  - platform: "knx"
+    name: "Bedroom wall"
+    address: "0/0/19"
+    state_address: "0/1/19"
+
+  - platform: "knx"
+    name: "Bathroom ceiling"
+    address: "0/0/20"
+    state_address: "0/1/20"
+
+  - platform: "knx"
+    name: "Bathroom mirror"
+    address: "0/0/21"
+    state_address: "0/1/21"
+
+  - platform: "knx"
+    name: "Front door"
+    address: "0/0/22"
+    state_address: "0/1/22"
+
+  - platform: "knx"
+    name: "Back downstairs"
+    address: "0/0/23"
+    state_address: "0/1/23"
+
+  - platform: "knx"
+    name: "Back upstairs"
+    address: "0/0/24"
+    state_address: "0/1/24"
+
+notify:
+  - platform: nfandroidtv
+    name: TV
+    host: tv
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
