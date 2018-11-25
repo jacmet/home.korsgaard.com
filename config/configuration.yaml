@@ -101,10 +101,36 @@ device_tracker:
       
 light:
   - platform: mqtt
-    name: "Halloween Front (s20-2)"
+    name: "switch 1 (s20-1)"
+    state_topic: "stat/sonoff-s20-1/POWER"
+    command_topic: "cmnd/sonoff-s20-1/POWER"
+    availability_topic: "tele/sonoff-s20-1/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    name: "switch 2 (s20-2)"
     state_topic: "stat/sonoff-s20-2/POWER"
     command_topic: "cmnd/sonoff-s20-2/POWER"
     availability_topic: "tele/sonoff-s20-2/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    name: "switch 3 (s20-3)"
+    state_topic: "stat/sonoff-s20-3/POWER"
+    command_topic: "cmnd/sonoff-s20-3/POWER"
+    availability_topic: "tele/sonoff-s20-3/LWT"
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
