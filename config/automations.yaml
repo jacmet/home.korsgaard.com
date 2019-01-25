@@ -8,7 +8,7 @@
     before: '22:00:00'
   action:
     service: homeassistant.turn_on
-    entity_id: group.outdoorauto
+    entity_id: group.outdoor_auto
 
 - alias: Turn off outdoor lights at night
   trigger:
@@ -16,7 +16,7 @@
     at: '22:00:00'
   action:
     service: homeassistant.turn_off
-    entity_id: group.outdoorauto
+    entity_id: group.outdoor_auto
 
 - alias: Turn on outdoor lights in the morning
   trigger:
@@ -27,7 +27,7 @@
     before: sunrise
   action:
     service: homeassistant.turn_on
-    entity_id: group.outdoorauto
+    entity_id: group.outdoor_auto
 
 - alias: Turn off outdoor lights at sunrise
   trigger:
@@ -36,5 +36,5 @@
     offset: '+00:10:00'
   action:
     service: homeassistant.turn_off
-    entity_id: group.outdoorauto
+    entity_id: group.outdoor_auto
     
