@@ -59,9 +59,9 @@ outdoor:
   name: Outdoor
   entities:
     - light.front_door
-    - light.switch_1_s201
-    - light.switch_2_s202
-    - light.switch_3_s203
+    - light.switch_1_s20_1
+    - light.switch_2_s20_2
+    - light.switch_3_s20_3
     - light.back_downstairs
     - light.back_upstairs
     - light.pool
@@ -70,9 +70,9 @@ outdoor-auto:
   name: Outdoor Automation
   entities:
     - light.front_door
-    - light.switch_1_s201
-    - light.switch_2_s202
-    - light.switch_3_s203
+    - light.switch_1_s20_1
+    - light.switch_2_s20_2
+    - light.switch_3_s20_3
     - light.pool
 
 guestroom:
