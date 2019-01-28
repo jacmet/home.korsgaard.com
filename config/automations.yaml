@@ -37,4 +37,24 @@
   action:
     service: homeassistant.turn_off
     entity_id: group.outdoor_auto
-    
+
+- alias: Turn on garden lights at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:10:00'
+  condition:
+    condition: template
+    # from April to end of October
+    value_template: "{{ now().month in range(4, 11) }}"
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.garden_auto
+
+- alias: Turn off garden lights at night
+  trigger:
+    platform: time
+    at: '23:59:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.garden_auto
