@@ -18,6 +18,24 @@
     service: homeassistant.turn_off
     entity_id: group.outdoor_auto
 
+- alias: Turn on indoor lights at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:10:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.indoor_auto
+
+- alias: Turn off outdoor lights at sunrise
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+00:10:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.indoor_auto
+
 - alias: Turn on outdoor lights in the morning
   trigger:
     platform: time

@@ -73,6 +73,12 @@ outdoor-auto:
     - light.switch_1_s20_1
     - light.switch_2_s20_2
     - light.switch_3_s20_3
+    - light.terras
+
+indoor-auto:
+  name: Indoor Automation
+  entities:
+    - light.stairs
 
 garden-auto:
   name: Garden Automation

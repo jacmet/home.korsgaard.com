@@ -152,6 +152,32 @@ light:
     optimistic: false
     qos: 0
 
+  - platform: mqtt
+    name: "Terras"
+    state_topic: "stat/sonoff-leds/POWER7"
+    command_topic: "cmnd/sonoff-leds/POWER7"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: false
+    qos: 0
+
+  - platform: mqtt
+    name: "Stairs"
+    state_topic: "stat/sonoff-leds/POWER8"
+    command_topic: "cmnd/sonoff-leds/POWER8"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    state_on: "ON"
+    state_off: "OFF"
+    optimistic: false
+    qos: 0
+
   - platform: "knx"
     name: "Kitchen cooking"
     address: "0/0/1"
