@@ -3,7 +3,7 @@ entrance:
   entities:
     - light.entrance_wall
     - light.stairs_wall
-    - light.dinner_table  
+    - light.dinner_table
 
 kitchen:
   name: Kitchen
@@ -29,6 +29,7 @@ nighthall:
   name: Night hall
   entities:
     - light.night_hall
+    - fan.upstairs_fan
 
 sibe:
   name: sibe

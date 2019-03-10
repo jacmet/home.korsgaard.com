@@ -74,6 +74,14 @@ sensor:
     address: '3/1/8'
     type: 'temperature'
 
+  - platform: mqtt
+    name: "Attic temperature"
+    state_topic: "tele/sonoff-fanup/SENSOR"
+    value_template: "{{ value_json.DS18B20.Temperature }}"
+    availability_topic: "tele/sonoff-fanup/LWT"
+    unit_of_measurement: "C"
+    payload_available: "Online"
+
   - platform: pvoutput
     system_id: 2652
     api_key: !secret pvoutput_apikey
@@ -98,7 +106,18 @@ knx:
 
 device_tracker:
   - platform: owntracks
-      
+
+fan:
+  - platform: mqtt
+    name: "Upstairs fan"
+    state_topic: "stat/sonoff-fanup/POWER"
+    command_topic: "cmnd/sonoff-fanup/POWER"
+    availability_topic: "tele/sonoff-fanup/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
 light:
   - platform: mqtt
     name: "switch 1 (s20-1)"
