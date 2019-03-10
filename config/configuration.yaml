@@ -108,9 +108,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
-    state_on: "ON"
-    state_off: "OFF"
-    optimistic: false
     qos: 0
 
   - platform: mqtt
@@ -121,9 +118,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
-    state_on: "ON"
-    state_off: "OFF"
-    optimistic: false
     qos: 0
 
   - platform: mqtt
@@ -134,9 +128,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
-    state_on: "ON"
-    state_off: "OFF"
-    optimistic: false
     qos: 0
 
   - platform: mqtt
@@ -147,9 +138,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
-    state_on: "ON"
-    state_off: "OFF"
-    optimistic: false
     qos: 0
 
   - platform: mqtt
@@ -160,9 +148,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
-    state_on: "ON"
-    state_off: "OFF"
-    optimistic: false
     qos: 0
 
   - platform: mqtt
@@ -173,9 +158,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
-    state_on: "ON"
-    state_off: "OFF"
-    optimistic: false
     qos: 0
 
   - platform: "knx"
