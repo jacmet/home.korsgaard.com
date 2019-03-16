@@ -64,7 +64,7 @@ climate:
     name: 'Heating'
     temperature_address: '3/1/8'
     operation_mode_address: '4/0/0'
-    target_temperature_address: '4/0/5'
+    target_temperature_address: '4/0/4'
     max_temp: 30.0
 
 # Sensors
