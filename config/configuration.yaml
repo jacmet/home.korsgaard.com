@@ -114,6 +114,10 @@ knx:
 
 device_tracker:
   - platform: owntracks
+  - platform: ping
+    hosts:
+      digicorder: 192.168.0.100
+      hp550: hp550wifi
 
 fan:
   - platform: mqtt
@@ -182,6 +186,16 @@ light:
     state_topic: "stat/sonoff-leds/POWER8"
     command_topic: "cmnd/sonoff-leds/POWER8"
     availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Living TV"
+    state_topic: "stat/sontv/POWER"
+    command_topic: "cmnd/sonoff-tv/POWER"
+    availability_topic: "tele/sonoff-tv/LWT"
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"

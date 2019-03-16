@@ -19,6 +19,7 @@ living:
     - light.living_couch
     - light.living_lone
     - light.living_office
+    - light.living_tv
 
 office:
   name: Office

@@ -76,3 +76,21 @@
   action:
     service: homeassistant.turn_off
     entity_id: group.garden_auto
+
+- alias: Turn on TV light when digicorder is turned on
+  trigger:
+    platform: state
+    entity_id: device_tracker.digicorder
+    to: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.living_tv
+
+- alias: Turn off TV light when digicorder is turned off
+  trigger:
+    platform: state
+    entity_id: device_tracker.digicorder
+    to: 'not_home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.living_tv
