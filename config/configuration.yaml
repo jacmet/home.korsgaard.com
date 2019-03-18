@@ -194,7 +194,7 @@ light:
 
   - platform: mqtt
     name: "Living TV"
-    state_topic: "stat/sontv/POWER"
+    state_topic: "stat/sonoff-tv/POWER"
     command_topic: "cmnd/sonoff-tv/POWER"
     availability_topic: "tele/sonoff-tv/LWT"
     payload_on: "ON"
