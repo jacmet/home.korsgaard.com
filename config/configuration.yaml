@@ -219,6 +219,16 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Bathroom LEDs"
+    state_topic: "stat/sonoff-leds/POWER1"
+    command_topic: "cmnd/sonoff-leds/POWER1"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Living TV"
     state_topic: "stat/sonoff-tv/POWER"
     command_topic: "cmnd/sonoff-tv/POWER"
