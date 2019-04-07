@@ -82,6 +82,9 @@
     platform: state
     entity_id: device_tracker.digicorder
     to: 'home'
+  condition:
+    condition: sun
+    after: sunset
   action:
     service: homeassistant.turn_on
     entity_id: light.living_tv
