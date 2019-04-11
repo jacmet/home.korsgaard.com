@@ -199,6 +199,16 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Stairs"
+    state_topic: "stat/sonoff-leds/POWER8"
+    command_topic: "cmnd/sonoff-leds/POWER8"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Terras"
     state_topic: "stat/sonoff-leds/POWER7"
     command_topic: "cmnd/sonoff-leds/POWER7"
@@ -209,9 +219,49 @@ light:
     qos: 0
 
   - platform: mqtt
-    name: "Stairs"
-    state_topic: "stat/sonoff-leds/POWER8"
-    command_topic: "cmnd/sonoff-leds/POWER8"
+    name: "Stars 1"
+    state_topic: "stat/sonoff-leds/POWER6"
+    command_topic: "cmnd/sonoff-leds/POWER6"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Stars 2"
+    state_topic: "stat/sonoff-leds/POWER5"
+    command_topic: "cmnd/sonoff-leds/POWER5"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Stars 3"
+    state_topic: "stat/sonoff-leds/POWER4"
+    command_topic: "cmnd/sonoff-leds/POWER4"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Stars 4"
+    state_topic: "stat/sonoff-leds/POWER3"
+    command_topic: "cmnd/sonoff-leds/POWER3"
+    availability_topic: "tele/sonoff-leds/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Stars 5"
+    state_topic: "stat/sonoff-leds/POWER2"
+    command_topic: "cmnd/sonoff-leds/POWER2"
     availability_topic: "tele/sonoff-leds/LWT"
     payload_on: "ON"
     payload_off: "OFF"
