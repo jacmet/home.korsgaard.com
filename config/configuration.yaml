@@ -419,6 +419,36 @@ light:
     address: "0/0/24"
     state_address: "0/1/24"
 
+binary_sensor:
+  - platform: knx
+    name: "Bedroom Switch 4"
+    address: '0/0/4'
+    automation:
+      - hook: 'on'
+        action:
+          - entity_id: light.stars_1
+            service: homeassistant.turn_on
+          - entity_id: light.stars_2
+            service: homeassistant.turn_on
+          - entity_id: light.stars_3
+            service: homeassistant.turn_on
+          - entity_id: light.stars_4
+            service: homeassistant.turn_on
+          - entity_id: light.stars_5
+            service: homeassistant.turn_on
+      - hook: 'off'
+        action:
+          - entity_id: light.stars_1
+            service: homeassistant.turn_off
+          - entity_id: light.stars_2
+            service: homeassistant.turn_off
+          - entity_id: light.stars_3
+            service: homeassistant.turn_off
+          - entity_id: light.stars_4
+            service: homeassistant.turn_off
+          - entity_id: light.stars_5
+            service: homeassistant.turn_off
+
 notify:
   - platform: nfandroidtv
     name: TV
