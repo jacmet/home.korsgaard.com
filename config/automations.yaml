@@ -89,6 +89,18 @@
     service: homeassistant.turn_on
     entity_id: light.living_tv
 
+- alias: Turn on TV light at dusk if digicorder is on
+  trigger:
+    platform: sun
+    event: sunset
+  condition:
+    condition: state
+    entity_id: device_tracker.digicorder
+    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.living_tv
+
 - alias: Turn off TV light when digicorder is turned off
   trigger:
     platform: state
