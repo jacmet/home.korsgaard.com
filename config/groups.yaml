@@ -81,6 +81,7 @@ indoor-auto:
   name: Indoor Automation
   entities:
     - light.stairs
+    - light.bathroom_leds
 
 garden-auto:
   name: Garden Automation
