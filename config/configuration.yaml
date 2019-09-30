@@ -120,6 +120,21 @@ device_tracker:
       digicorder: 192.168.0.100
       hp550: hp550wifi
 
+cover:
+  - platform: mqtt
+    name: "Garage door"
+    command_topic: "cmnd/sonoff-garage/POWER"
+    payload_open: "ON"
+    payload_close: "ON"
+    payload_stop: "ON"
+    state_topic: "stat/sonoff-garage/DOOR"
+    state_open: "OPEN"
+    state_closed: "CLOSED"
+    availability_topic: "tele/sonoff-garage/LWT"
+    payload_available: "Online"
+    device_class: "garage"
+    qos: 0
+
 fan:
   - platform: mqtt
     name: "Upstairs fan"
