@@ -68,6 +68,11 @@ climate:
     setpoint_shift_address: '4/0/7'
     max_temp: 30.0
 
+weather:
+  - platform: darksky
+    api_key: !secret darksky_apikey
+    mode: daily
+
 # Sensors
 sensor:
   # Weather prediction
