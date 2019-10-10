@@ -139,6 +139,24 @@ cover:
     payload_available: "Online"
     device_class: "garage"
     qos: 0
+  - platform: knx
+    name: "Bedroom both curtain"
+    move_long_address: "3/1/2"
+    move_short_address: "3/1/3"
+    travelling_time_down: 40
+    travelling_time_up: 40
+  - platform: knx
+    name: "Bedroom right curtain"
+    move_long_address: "3/1/4"
+    move_short_address: "3/1/5"
+    travelling_time_down: 40
+    travelling_time_up: 40
+  - platform: knx
+    name: "Bedroom left curtain"
+    move_long_address: "3/1/6"
+    move_short_address: "3/1/7"
+    travelling_time_down: 40
+    travelling_time_up: 40
 
 fan:
   - platform: mqtt
