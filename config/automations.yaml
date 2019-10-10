@@ -163,3 +163,17 @@
   action:
     service: cover.close_cover
     entity_id: cover.bedroom_both_curtain
+
+- alias: Turn off heating at night
+  trigger:
+    platform: time
+    at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: climate.heating
+    state: 'heat'
+  action:
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.heating
+        preset_mode: 'eco'
