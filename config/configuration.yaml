@@ -439,6 +439,14 @@ light:
     address: "0/0/24"
     state_address: "0/1/24"
 
+  - platform: "knx"
+    name: "Lone bed led"
+    address: "0/1/25"
+
+  - platform: "knx"
+    name: "Sibe bed led"
+    address: "0/1/26"
+
 binary_sensor:
   - platform: knx
     name: "Bedroom Switch 4"

@@ -109,3 +109,40 @@
   action:
     service: homeassistant.turn_off
     entity_id: light.living_tv
+
+- alias: Turn off bed lights in the morning during the week
+  trigger:
+    platform: time
+    at: '07:30:00'
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.bed_lights
+
+- alias: Turn off bed lights in the morning during the weekend
+  trigger:
+    platform: time
+    at: '08:00:00'
+  condition:
+    condition: time
+    weekday:
+      - sat
+      - sun
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.bed_lights
+
+- alias: Turn on bed lights in the evening
+  trigger:
+    platform: time
+    at: '21:00:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.bed_lights

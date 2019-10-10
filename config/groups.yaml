@@ -36,13 +36,21 @@ sibe:
   name: sibe
   entities:
     - light.sibe_bed
+    - light.sibe_bed_led
     - light.sibe_ceiling
 
 lone:
   name: Lone
   entities:
     - light.lone_bed
+    - light.lone_bed_led
     - light.lone_ceiling
+
+bed_lights:
+  name: Bedlights
+  entities:
+    - light.sibe_bed_led
+    - light.lone_bed_led
 
 bathroom:
   name: Bathroom
