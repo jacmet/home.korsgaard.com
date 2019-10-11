@@ -205,3 +205,82 @@
   action:
     - service: light.turn_off
       entity_id: light.bathroom_ceiling
+
+  # holiday automation
+- alias: Holiday - Turn on entrance light at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:30:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'on'
+    - condition: time
+      before: '22:50:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.entrance_wall
+
+- alias: Holiday - Turn off entrance light at night
+  trigger:
+    platform: time
+    at: '22:50:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.entrance_wall
+
+- alias: Holiday - Turn on dinner light at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '00:30:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'on'
+    - condition: time
+      before: '23:0:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.dinner_table
+
+- alias: Holiday - Turn off dinner light at night
+  trigger:
+    platform: time
+    at: '23:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.dinner_table
+
+- alias: Holiday - Turn on night hall light at 22:40
+  trigger:
+    platform: time
+    at: '22:40:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.night_hall
+
+- alias: Holiday - Turn off night hall light at 23:10
+  trigger:
+    platform: time
+    at: '23:10:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.night_hall
