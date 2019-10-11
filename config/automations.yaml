@@ -177,3 +177,31 @@
       data:
         entity_id: climate.heating
         preset_mode: 'eco'
+
+- alias: Turn off bathroom mirror light after 30 mins
+  trigger:
+    - platform: state
+      entity_id: light.bathroom_mirror
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  action:
+    - service: light.turn_off
+      entity_id: light.bathroom_mirror
+
+- alias: Turn off bathroom ceiling light after 30 mins
+  trigger:
+    - platform: state
+      entity_id: light.bathroom_ceiling
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+  action:
+    - service: light.turn_off
+      entity_id: light.bathroom_ceiling
