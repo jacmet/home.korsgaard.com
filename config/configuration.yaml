@@ -512,6 +512,9 @@ binary_sensor:
             service: homeassistant.turn_off
           - entity_id: light.stars_5
             service: homeassistant.turn_off
+  - platform: knx
+    name: 'Heating Sensor'
+    state_address: '4/1/2'
 
 notify:
   - platform: nfandroidtv
