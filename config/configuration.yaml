@@ -96,6 +96,13 @@ sensor:
     unit_of_measurement: "C"
     payload_available: "Online"
 
+  - platform: mqtt
+    name: "IR code"
+    state_topic: "tele/sonoff-ir/RESULT"
+    value_template: "{{ value_json.IrReceived.Data }}"
+    availability_topic: "tele/sonoff-ir/LWT"
+    payload_available: "Online"
+
   - platform: pvoutput
     system_id: 2652
     api_key: !secret pvoutput_apikey
