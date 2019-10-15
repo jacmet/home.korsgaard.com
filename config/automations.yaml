@@ -202,6 +202,20 @@
       data_template:
         entity_id: "{{ trigger.entity_id }}"
 
+- alias: Alert about upcoming trash pickup at 20:00
+  trigger:
+    platform: state
+    entity_id: sensor.minutes_to_trash
+    to: '240'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'off'
+  action:
+    - service: notify.hangout_peter
+      data_template:
+        message: "Do not forget to put out trash for tomorrow: {{ states.calendar.trash.attributes.message }}"
+
   # holiday automation
 - alias: Holiday - Turn on entrance light at dusk
   trigger:

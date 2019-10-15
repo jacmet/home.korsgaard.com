@@ -120,6 +120,22 @@ sensor:
         friendly_name: 'Generated'
         unit_of_measurement: 'kWh'
 
+  - platform: time_date
+    display_options:
+      - 'time'
+
+  - platform: template
+    sensors:
+      minutes_to_trash:
+        friendly_name: Time in minutes to next trash pickup
+        entity_id: sensor.time
+        value_template: >-
+          {% if states.calendar.trash.attributes.start_time %}
+            {{((as_timestamp(states.calendar.trash.attributes.start_time) - as_timestamp(now())) / 60) | default(99) | int }}
+          {%- else -%}
+            0
+          {%- endif %}
+
 # Text to speech
 tts:
   - platform: google_translate
