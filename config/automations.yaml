@@ -62,9 +62,12 @@
     event: sunset
     offset: '-00:10:00'
   condition:
-    condition: template
-    # from April to end of October
-    value_template: "{{ now().month in range(4, 11) }}"
+    - condition: template
+      # from April to end of October
+      value_template: "{{ now().month in range(4, 11) }}"
+    - condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: group.garden_auto
@@ -83,8 +86,11 @@
     entity_id: device_tracker.digicorder
     to: 'home'
   condition:
-    condition: sun
-    after: sunset
+    - condition: sun
+      after: sunset
+    - condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: light.living_tv
@@ -94,9 +100,12 @@
     platform: sun
     event: sunset
   condition:
-    condition: state
-    entity_id: device_tracker.digicorder
-    state: 'home'
+    - condition: state
+      entity_id: device_tracker.digicorder
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.holiday_mode
+      state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: light.living_tv
@@ -143,6 +152,10 @@
   trigger:
     platform: time
     at: '21:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: group.bed_lights
