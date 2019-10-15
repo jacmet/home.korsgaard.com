@@ -80,29 +80,19 @@
     service: homeassistant.turn_off
     entity_id: group.garden_auto
 
-- alias: Turn on TV light when digicorder is turned on
+- alias: Turn on TV light when digicorder is on after dusk
   trigger:
-    platform: state
-    entity_id: device_tracker.digicorder
-    to: 'home'
-  condition:
-    - condition: sun
-      after: sunset
-    - condition: state
-      entity_id: input_boolean.holiday_mode
-      state: 'off'
-  action:
-    service: homeassistant.turn_on
-    entity_id: light.living_tv
-
-- alias: Turn on TV light at dusk if digicorder is on
-  trigger:
-    platform: sun
-    event: sunset
+    - platform: sun
+      event: sunset
+    - platform: state
+      entity_id: device_tracker.digicorder
+      to: 'home'
   condition:
     - condition: state
       entity_id: device_tracker.digicorder
       state: 'home'
+    - condition: sun
+      after: sunset
     - condition: state
       entity_id: input_boolean.holiday_mode
       state: 'off'
