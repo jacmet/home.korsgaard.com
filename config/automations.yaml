@@ -216,6 +216,24 @@
       data_template:
         message: "Do not forget to put out trash for tomorrow: {{ states.calendar.trash.attributes.message }}"
 
+- alias: Enable holiday mode when away
+  trigger:
+    platform: state
+    entity_id: calendar.holiday
+    to: 'on'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.holiday_mode
+
+- alias: Disable holiday mode when not away
+  trigger:
+    platform: state
+    entity_id: calendar.holiday
+    to: 'off'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.holiday_mode
+
   # holiday automation
 - alias: Holiday - Turn on entrance light at dusk
   trigger:
