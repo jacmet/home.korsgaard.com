@@ -216,6 +216,15 @@ switch:
           service: homeassistant.turn_off
           entity_id: input_boolean.holiday_mode
 
+  - platform: mqtt
+    name: "Garage door disable"
+    command_topic: "cmnd/sonoff-garage/ButtonTopic"
+    payload_off: "0"
+    payload_on: "disable"
+    availability_topic: "tele/sonoff-garage/LWT"
+    payload_available: "Online"
+    qos: 0
+
 light:
   - platform: mqtt
     name: "switch 1 (s20-1)"

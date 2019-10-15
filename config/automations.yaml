@@ -235,6 +235,24 @@
       entity_id: input_boolean.holiday_mode
 
   # holiday automation
+- alias: On entering holiday mode
+  trigger:
+    platform: state
+    entity_id: input_boolean.holiday_mode
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.garage_door_disable
+
+- alias: On leaving holiday mode
+  trigger:
+    platform: state
+    entity_id: input_boolean.holiday_mode
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.garage_door_disable
+
 - alias: Holiday - Turn on entrance light at dusk
   trigger:
     platform: sun
