@@ -93,6 +93,8 @@
       state: 'home'
     - condition: sun
       after: sunset
+    - condition: time
+      before: '23:00:00'
     - condition: state
       entity_id: input_boolean.holiday_mode
       state: 'off'
@@ -100,11 +102,13 @@
     service: homeassistant.turn_on
     entity_id: light.living_tv
 
-- alias: Turn off TV light when digicorder is turned off
+- alias: Turn off TV light when digicorder is turned off or night
   trigger:
-    platform: state
-    entity_id: device_tracker.digicorder
-    to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.digicorder
+      to: 'not_home'
+    - platform: time
+      at: '23:30:00'
   action:
     service: homeassistant.turn_off
     entity_id: light.living_tv
