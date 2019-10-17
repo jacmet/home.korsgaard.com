@@ -22,7 +22,7 @@ connected in parallel with the garage door open/close button.
 
 The door state is handled by a rule:
 
-on switch3#state=0 do publish stat/sonoff-garage/DOOR OPENING endon
-on switch3#state=1 do publish stat/sonoff-garage/DOOR CLOSED endon
-on switch4#state=0 do publish stat/sonoff-garage/DOOR CLOSING endon
-on switch4#state=1 do publish stat/sonoff-garage/DOOR OPEN endon
+on switch3#state=0 do publish2 stat/sonoff-garage/DOOR OPENING endon
+on switch3#state=1 do publish2 stat/sonoff-garage/DOOR CLOSED endon
+on switch4#state=0 do publish2 stat/sonoff-garage/DOOR CLOSING endon
+on switch4#state=1 do publish2 stat/sonoff-garage/DOOR OPEN endon
