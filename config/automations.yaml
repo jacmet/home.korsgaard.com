@@ -202,6 +202,26 @@
       data_template:
         entity_id: "{{ trigger.entity_id }}"
 
+- alias: Handle upstairs all-off button for non-KNX lights
+  trigger:
+    platform: event
+    event_type: knx_event
+    event_data:
+      address: "3/0/2"
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.upstairs_auto_off
+
+- alias: Handle downstairs all-off button for non-KNX lights
+  trigger:
+    platform: event
+    event_type: knx_event
+    event_data:
+      address: "3/0/3"
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.downstairs_auto_off
+
 - alias: Alert about upcoming trash pickup at 20:00
   trigger:
     platform: state

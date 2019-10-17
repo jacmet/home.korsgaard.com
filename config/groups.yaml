@@ -100,3 +100,19 @@ guestroom:
   name: Guestroom
   entities:
     - light.guest_room
+
+downstairs-auto-off:
+  name: Downstairs automation all-off
+  entities:
+    - light.switch_2_s20_2
+    - light.living_tv
+    - light.terras
+
+upstairs-auto-off:
+  name: Upstairs automation all-off
+  entities:
+    - light.stars_1
+    - light.stars_2
+    - light.stars_3
+    - light.stars_4
+    - light.stars_5

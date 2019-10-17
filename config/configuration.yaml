@@ -141,6 +141,8 @@ tts:
   - platform: google_translate
 
 knx:
+  fire_event: True
+  fire_event_filter: "3/0/*"
   tunneling:
     host: '127.0.0.1'
     port: 3671
