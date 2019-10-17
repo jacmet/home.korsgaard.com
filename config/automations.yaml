@@ -222,6 +222,26 @@
     service: homeassistant.turn_off
     entity_id: group.downstairs_auto_off
 
+- alias: Alert about opening of garage door by keypad
+  trigger:
+    platform: mqtt
+    topic: "stat/sonoff-garage/POWER"
+    payload: "ON"
+  action:
+    - service: notify.hangout_peter
+      data:
+        message: "Garage door opened by keypad"
+
+- alias: Alert about garage door keypad alarm
+  trigger:
+    platform: mqtt
+    topic: "stat/sonoff-garage/POWER2"
+    payload: "ON"
+  action:
+    - service: notify.hangout_peter
+      data:
+        message: "Garage door keypad alarm triggered!"
+
 - alias: Alert about upcoming trash pickup at 20:00
   trigger:
     platform: state
