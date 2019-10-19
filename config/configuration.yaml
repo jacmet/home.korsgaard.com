@@ -101,13 +101,6 @@ sensor:
     unit_of_measurement: "C"
     payload_available: "Online"
 
-  - platform: mqtt
-    name: "IR code"
-    state_topic: "tele/sonoff-ir/RESULT"
-    value_template: "{{ value_json.IrReceived.Data }}"
-    availability_topic: "tele/sonoff-ir/LWT"
-    payload_available: "Online"
-
   - platform: pvoutput
     system_id: 2652
     api_key: !secret pvoutput_apikey
@@ -379,6 +372,16 @@ light:
     state_topic: "stat/sonoff-tv/POWER"
     command_topic: "cmnd/sonoff-tv/POWER"
     availability_topic: "tele/sonoff-tv/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Sibe lego"
+    state_topic: "stat/sonoff-ir/POWER"
+    command_topic: "cmnd/sonoff-ir/POWER"
+    availability_topic: "tele/sonoff-ir/LWT"
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"

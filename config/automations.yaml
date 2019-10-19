@@ -373,39 +373,18 @@
 
 - alias: Shoot purple nerf
   trigger:
-    platform: state
-    entity_id: sensor.ir_code
-    to: '0x67228B44'
+    platform: mqtt
+    topic: "cmnd/sonoff-ir/PURPLE"
+    payload: "TOGGLE"
   action:
     - service: homeassistant.toggle
       entity_id: light.sibe_ceiling
-    - service: mqtt.publish
-      data:
-        topic: 'tele/sonoff-ir/RESULT'
-        payload: '{"IrReceived":{"Protocol":"UNKNOWN","Bits":0,"Data":"0"}}'
 
 - alias: Shoot red nerf
   trigger:
-    platform: state
-    entity_id: sensor.ir_code
-    to: '0x78653B0E'
+    platform: mqtt
+    topic: "cmnd/sonoff-ir/RED"
+    payload: "TOGGLE"
   action:
     - service: homeassistant.toggle
       entity_id: light.sibe_bed
-    - service: mqtt.publish
-      data:
-        topic: 'tele/sonoff-ir/RESULT'
-        payload: '{"IrReceived":{"Protocol":"UNKNOWN","Bits":0,"Data":"0"}}'
-
-- alias: Shoot blue nerf
-  trigger:
-    platform: state
-    entity_id: sensor.ir_code
-    to: '0x2FFEA610'
-  action:
-    - service: homeassistant.toggle
-      entity_id: light.sibe_bed_led
-    - service: mqtt.publish
-      data:
-        topic: 'tele/sonoff-ir/RESULT'
-        payload: '{"IrReceived":{"Protocol":"UNKNOWN","Bits":0,"Data":"0"}}'
