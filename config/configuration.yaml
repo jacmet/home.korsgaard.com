@@ -129,6 +129,12 @@ sensor:
             0
           {%- endif %}
 
+  - platform: rest
+    resource: http://api.ipify.org/?format=json
+    name: External IP
+    value_template: '{{ value_json.ip }}'
+    scan_interval: 300
+
 # Text to speech
 tts:
   - platform: google_translate
