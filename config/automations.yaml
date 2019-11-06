@@ -183,7 +183,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.heating
-        preset_mode: 'eco'
+        preset_mode: 'away'
 
 - alias: Automatically turn off light after 30 mins
   trigger:
