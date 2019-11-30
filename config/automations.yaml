@@ -171,6 +171,22 @@
     service: cover.close_cover
     entity_id: cover.bedroom_both_curtain
 
+- alias: Turn on upstairs fan in the morning
+  trigger:
+    platform: time
+    at: '10:30:00'
+  action:
+    service: homeassistant.turn_on
+    entity_id: fan.upstairs_fan
+
+- alias: Turn off upstairs fan in the afternoon
+  trigger:
+    platform: time
+    at: '13:00:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: fan.upstairs_fan
+
 - alias: Turn off heating at night
   trigger:
     platform: time
