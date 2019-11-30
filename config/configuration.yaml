@@ -579,6 +579,11 @@ media_player:
     name: Android TV
     host: tv
 
+vacuum:
+  - platform: xiaomi_miio
+    host: roborock
+    token: !secret roborock_token
+
 system_health:
 
 # Cloud
