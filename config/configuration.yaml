@@ -583,6 +583,13 @@ vacuum:
   - platform: xiaomi_miio
     host: roborock
     token: !secret roborock_token
+  - platform: mqtt
+    name: Roomba
+    schema: state
+    supported_features:
+      - start
+      - stop
+    command_topic: 'roomba/command'
 
 system_health:
 
