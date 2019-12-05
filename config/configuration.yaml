@@ -146,6 +146,11 @@ knx:
     host: '127.0.0.1'
     port: 3671
     local_ip: '127.0.0.1'
+  expose:
+    - type: 'date'
+      address: '3/1/0'
+    - type: 'time'
+      address: '3/1/1'
 
 device_tracker:
   - platform: ping
