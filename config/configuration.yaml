@@ -566,6 +566,8 @@ binary_sensor:
   - platform: knx
     name: 'Heating Sensor'
     state_address: '4/1/2'
+  - platform: workday
+    country: BE
 
 notify:
   - platform: nfandroidtv
