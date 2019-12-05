@@ -153,6 +153,8 @@ device_tracker:
       digicorder: '192.168.0.100'
       sibe_pc: 'sibe-pc'
       lone_pc: 'lone-pc'
+      peter_pc: 'dell'
+      eve_pc: 'eve-pc'
 
 cover:
   - platform: mqtt
