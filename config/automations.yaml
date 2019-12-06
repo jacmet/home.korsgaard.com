@@ -203,7 +203,7 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.heating
-        preset_mode: 'heat'
+        preset_mode: 'comfort'
 
 - alias: Turn on heating in the afternoon during the winter
   trigger:
@@ -221,16 +221,13 @@
     - service: climate.set_preset_mode
       data:
         entity_id: climate.heating
-        preset_mode: 'heat'
+        preset_mode: 'comfort'
 
 - alias: Turn off heating on work days when nobody is home
   trigger:
     platform: time
     at: "08:30:00"
   condition:
-    - condition: state
-      entity_id: climate.heating
-      state: 'heat'
     - condition: time
       weekday:
       - thu
@@ -251,10 +248,6 @@
   trigger:
     platform: time
     at: "22:00:00"
-  condition:
-    condition: state
-    entity_id: climate.heating
-    state: 'heat'
   action:
     - service: climate.set_preset_mode
       data:
