@@ -18,6 +18,62 @@
     service: homeassistant.turn_off
     entity_id: group.outdoor_auto
 
+- alias: Turn on christmas lights at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:10:00'
+  condition:
+    condition: template
+    value_template: >
+      {% set n = now() %}
+      {{ n.month in [1, 12] }}
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.christmas_auto
+
+- alias: Turn off christmas lights at night
+  trigger:
+    platform: time
+    at: '22:00:00'
+  condition:
+    condition: template
+    value_template: >
+      {% set n = now() %}
+      {{ n.month in [1, 12] }}
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.christmas_auto
+
+- alias: Turn on christmas lights in the morning
+  trigger:
+    platform: time
+    at: '07:30:00'
+  condition:
+    - condition: sun
+      before: sunrise
+    - condition: template
+      value_template: >
+        {% set n = now() %}
+        {{ n.month in [1, 12] }}
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.christmas_auto
+
+- alias: Turn off christmas lights at sunrise
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+00:10:00'
+  condition:
+    condition: template
+    value_template: >
+      {% set n = now() %}
+      {{ n.month in [1, 12] }}
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.christmas_auto
+
 - alias: Turn on indoor lights at dusk
   trigger:
     platform: sun

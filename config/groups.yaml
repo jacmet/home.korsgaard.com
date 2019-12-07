@@ -116,3 +116,8 @@ upstairs-auto-off:
     - light.stars_3
     - light.stars_4
     - light.stars_5
+
+christmas-auto:
+  name: Christmas lights automation
+  entities:
+    - light.blitzwolf_switch
