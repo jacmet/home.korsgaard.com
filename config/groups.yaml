@@ -120,4 +120,5 @@ upstairs-auto-off:
 christmas-auto:
   name: Christmas lights automation
   entities:
+    - light.switch_1_s20_1
     - light.blitzwolf_switch
