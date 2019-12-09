@@ -121,4 +121,5 @@ christmas-auto:
   name: Christmas lights automation
   entities:
     - light.switch_1_s20_1
+    - light.switch_3_s20_3
     - light.blitzwolf_switch
