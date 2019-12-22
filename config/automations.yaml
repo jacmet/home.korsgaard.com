@@ -231,6 +231,10 @@
   trigger:
     platform: time
     at: '10:30:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'off'
   action:
     service: homeassistant.turn_on
     entity_id: fan.upstairs_fan
@@ -239,6 +243,10 @@
   trigger:
     platform: time
     at: '13:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'off'
   action:
     service: homeassistant.turn_off
     entity_id: fan.upstairs_fan
