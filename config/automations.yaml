@@ -566,3 +566,17 @@
   action:
     service: vacuum.start
     entity_id: vacuum.roomba
+
+- alias: Run roborock on Mondays, Wednesdays and Fridays at 10h
+  trigger:
+    platform: time
+    at: '10:00:00'
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - wed
+      - fri
+  action:
+    service: vacuum.start
+    entity_id: vacuum.roborock
