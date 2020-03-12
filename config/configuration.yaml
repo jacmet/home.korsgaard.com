@@ -168,6 +168,38 @@ sensor:
     state_topic: "tele/blitzwolf/SENSOR"
     value_template: '{{ value_json["ENERGY"]["Factor"] }}'
 
+    # Sensor for monitoring the bridge state
+  - platform: mqtt
+    name: Zigbee2mqtt Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireless
+  - platform: mqtt
+    name: Zigbee2mqtt Version
+    state_topic: "zigbee2mqtt/bridge/config"
+    value_template: "{{ value_json.version }}"
+    icon: mdi:zigbee
+    # Sensor for Showing the Coordinator Version
+  - platform: mqtt
+    name: Coordinator Version
+    state_topic: "zigbee2mqtt/bridge/config"
+    value_template: "{{ value_json.coordinator.meta.revision }}"
+    icon: mdi:chip
+
+  - platform: "mqtt"
+    name: "front door sensor battery"
+    state_topic: "zigbee2mqtt/front_door"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    device_class: "battery"
+    value_template: "{{ value_json.battery }}"
+  - platform: "mqtt"
+    name: "front door sensor signal"
+    state_topic: "zigbee2mqtt/front_door"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    icon: "mdi:signal"
+    unit_of_measurement: "lqi"
+    value_template: "{{ value_json.linkquality }}"
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -265,6 +297,13 @@ switch:
     availability_topic: "tele/sonoff-garage/LWT"
     payload_available: "Online"
     qos: 0
+
+  - platform: mqtt
+    name: "Zigbee2mqtt allow join"
+    state_topic: "zigbee2mqtt/bridge/config/permit_join"
+    command_topic: "zigbee2mqtt/bridge/config/permit_join"
+    payload_on: "true"
+    payload_off: "false"
 
 light:
   - platform: mqtt
@@ -616,6 +655,14 @@ binary_sensor:
     state_address: '4/1/2'
   - platform: workday
     country: BE
+  - platform: "mqtt"
+    name: 'Front door'
+    state_topic: "zigbee2mqtt/front_door"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
 
 notify:
   - platform: nfandroidtv
