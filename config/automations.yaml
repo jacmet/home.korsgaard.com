@@ -325,6 +325,11 @@
         - light.bathroom_mirror
         - light.bathroom_ceiling
         - light.sibe_lego
+        - light.bedroom_wall
+        - light.evelyne_bed
+        - light.peter_bed
+        - light.kitchen_closets
+        - light.entrance_wall
       from: 'off'
       to: 'on'
       for:
