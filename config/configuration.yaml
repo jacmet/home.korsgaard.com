@@ -710,6 +710,11 @@ vacuum:
       - stop
     command_topic: 'roomba/command'
 
+camera:
+  - platform: mqtt
+    name: "Roborock"
+    topic: "valetudo/rockrobo/map"
+
 system_health:
 
 # Cloud
