@@ -423,19 +423,22 @@
       data_template:
         message: "Do not forget to put out trash for tomorrow: {{ states.calendar.trash.attributes.message }}"
 
-- alias: Alert about opening of front door when on holiday
+- alias: Alert about opening of doors when on holiday
   trigger:
-    platform: state
-    entity_id: binary_sensor.front_door
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.downstairs_sliding_door
+      to: 'on'
   condition:
     condition: state
     entity_id: input_boolean.holiday_mode
     state: 'on'
   action:
     - service: notify.hangout_peter
-      data:
-        message: "Front door opened while on holiday!"
+      data_template:
+        message: "{{ trigger.to_state.attributes.friendly_name }} opened while on holiday!"
 
 - alias: Alert about leaving front door open for more than 10 mins
   trigger:
