@@ -663,6 +663,14 @@ binary_sensor:
     payload_off: true
     value_template: "{{ value_json.contact }}"
     device_class: "door"
+  - platform: "mqtt"
+    name: 'Downstairs sliding door'
+    state_topic: "zigbee2mqtt/down_slide"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
 
 notify:
   - platform: nfandroidtv
