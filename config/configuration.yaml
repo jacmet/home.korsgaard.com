@@ -101,7 +101,8 @@ sensor:
     state_topic: "tele/sonoff-fanup/SENSOR"
     value_template: "{{ value_json.DS18B20.Temperature }}"
     availability_topic: "tele/sonoff-fanup/LWT"
-    unit_of_measurement: "C"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
     payload_available: "Online"
 
   - platform: pvoutput
