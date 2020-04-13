@@ -105,6 +105,42 @@ sensor:
     unit_of_measurement: "°C"
     payload_available: "Online"
 
+  - platform: mqtt
+    name: "Sibe temperature"
+    state_topic: "tele/sonoff-temp/SENSOR"
+    value_template: >
+      {% set serial_number = '0301A2791B38' %}
+      {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
+      {{ selection[0] if selection[0] > 0 else 0.0 }}
+    availability_topic: "tele/sonoff-temp/LWT"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    payload_available: "Online"
+
+  - platform: mqtt
+    name: "Lone temperature"
+    state_topic: "tele/sonoff-temp/SENSOR"
+    value_template: >
+      {% set serial_number = '0316A2798CEC' %}
+      {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
+      {{ selection[0] if selection[0] > 0 else 0.0 }}
+    availability_topic: "tele/sonoff-temp/LWT"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    payload_available: "Online"
+
+  - platform: mqtt
+    name: "Bedroom temperature"
+    state_topic: "tele/sonoff-temp/SENSOR"
+    value_template: >
+      {% set serial_number = '0301A279483F' %}
+      {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
+      {{ selection[0] if selection[0] > 0 else 0.0 }}
+    availability_topic: "tele/sonoff-temp/LWT"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    payload_available: "Online"
+
   - platform: pvoutput
     system_id: 2652
     api_key: !secret pvoutput_apikey
