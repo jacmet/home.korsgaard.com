@@ -99,7 +99,9 @@ sensor:
   - platform: mqtt
     name: "Attic temperature"
     state_topic: "tele/sonoff-fanup/SENSOR"
-    value_template: "{{ value_json.DS18B20.Temperature }}"
+    value_template: >
+      {% set temp_offset = 1.6 %}
+      {{ (value_json.DS18B20.Temperature+temp_offset) | round(1) }}
     availability_topic: "tele/sonoff-fanup/LWT"
     device_class: "temperature"
     unit_of_measurement: "°C"
@@ -110,8 +112,9 @@ sensor:
     state_topic: "tele/sonoff-temp/SENSOR"
     value_template: >
       {% set serial_number = '0301A2791B38' %}
+      {% set temp_offset = -0.6 %}
       {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
-      {{ selection[0] if selection[0] > 0 else 0.0 }}
+      {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
     availability_topic: "tele/sonoff-temp/LWT"
     device_class: "temperature"
     unit_of_measurement: "°C"
@@ -122,8 +125,9 @@ sensor:
     state_topic: "tele/sonoff-temp/SENSOR"
     value_template: >
       {% set serial_number = '0316A2798CEC' %}
+      {% set temp_offset = 1.8 %}
       {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
-      {{ selection[0] if selection[0] > 0 else 0.0 }}
+      {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
     availability_topic: "tele/sonoff-temp/LWT"
     device_class: "temperature"
     unit_of_measurement: "°C"
@@ -134,8 +138,9 @@ sensor:
     state_topic: "tele/sonoff-temp/SENSOR"
     value_template: >
       {% set serial_number = '0301A279483F' %}
+      {% set temp_offset = 0.4 %}
       {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
-      {{ selection[0] if selection[0] > 0 else 0.0 }}
+      {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
     availability_topic: "tele/sonoff-temp/LWT"
     device_class: "temperature"
     unit_of_measurement: "°C"
