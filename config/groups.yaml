@@ -20,6 +20,7 @@ living:
     - light.living_lone
     - light.living_office
     - light.living_tv
+    - light.living_rgb_bulb
 
 office:
   name: Office
@@ -106,6 +107,7 @@ downstairs-auto-off:
   entities:
     - light.switch_2_s20_2
     - light.living_tv
+    - light.living_rgb_bulb
     - light.terras
 
 upstairs-auto-off:

@@ -156,7 +156,9 @@
       state: 'off'
   action:
     service: homeassistant.turn_on
-    entity_id: light.living_tv
+    entity_id:
+      - light.living_tv
+      - light.living_rgb_bulb
 
 - alias: Turn off TV light when digicorder is turned off or night
   trigger:
@@ -167,7 +169,9 @@
       at: '23:30:00'
   action:
     service: homeassistant.turn_off
-    entity_id: light.living_tv
+    entity_id:
+      - light.living_tv
+      - light.living_rgb_bulb
 
 - alias: Turn off bed lights in the morning during the week
   trigger:

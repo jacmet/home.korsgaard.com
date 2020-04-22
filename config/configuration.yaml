@@ -439,6 +439,32 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Living RGB bulb"
+    state_topic: "stat/bulb01/POWER"
+    command_topic: "cmnd/bulb01/POWER"
+    availability_topic: "tele/bulb01/LWT"
+    brightness_state_topic: "stat/bulb01/Dimmer"
+    brightness_command_topic: "cmnd/bulb01/Dimmer"
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    brightness_scale: 100
+    rgb_state_topic: "stat/bulb01/Color"
+    rgb_command_topic: "cmnd/bulb01/Color2"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    effect_state_topic: "stat/bulb01/Scheme"
+    effect_command_topic: "cmnd/bulb01/Scheme"
+    effect_value_template: "{{ value_json.Scheme }}"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Stairs"
     state_topic: "stat/sonoff-leds/POWER8"
     command_topic: "cmnd/sonoff-leds/POWER8"
