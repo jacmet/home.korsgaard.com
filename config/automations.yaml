@@ -330,6 +330,40 @@
         entity_id: climate.heating
         preset_mode: 'away'
 
+- alias: Turn on entrance wall light on motion after dark
+  trigger:
+    platform: state
+    entity_id: binary_sensor.zigbee_motion_sensor
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+      - condition: sun
+        before: sunrise
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.entrance_wall
+
+- alias: Turn off entrance wall light 5 minutes after motion after dark
+  trigger:
+    platform: state
+    entity_id: binary_sensor.zigbee_motion_sensor
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+      - condition: sun
+        before: sunrise
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.entrance_wall
+
 - alias: Automatically turn off light after 30 mins
   trigger:
     - platform: state
