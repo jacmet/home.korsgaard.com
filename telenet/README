@@ -1,0 +1,15 @@
+Docker container to retrieve Telenet bandwidth usage
+
+Telenet unfortunately does not have a public API for this, so instead
+use selenium to login to "mijn Telenet" and scrape the bandwidth usage
+info.
+
+Do use, pass Telenet username and password:
+
+docker run --rm telenet-usage:latest <username> <password>
+
+And the current monthly bandwidth usage in GB will be printed to
+stdout.
+
+See get-telenet-usage.sh for an example of publishing this to MQTT,
+suitable for a daily cronjob.
