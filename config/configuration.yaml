@@ -276,6 +276,16 @@ sensor:
     icon: "mdi:signal"
     unit_of_measurement: "lqi"
     value_template: "{{ value_json.linkquality }}"
+  - platform: mqtt
+    name: Telenet month
+    state_topic: "telenet/usage"
+    unit_of_measurement: "GB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Telenet yesterday
+    state_topic: "telenet/delta"
+    unit_of_measurement: "GB"
+    icon: mdi:network
 
 # Text to speech
 tts:
