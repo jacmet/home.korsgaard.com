@@ -286,6 +286,90 @@ sensor:
     state_topic: "telenet/delta"
     unit_of_measurement: "GB"
     icon: mdi:network
+  - platform: mqtt
+    name: Network total
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["total"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Sibe PC
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["sibe-pc"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Sibe GSM
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["sibe-a2"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Sibe Radio
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["hama"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Lone PC
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["lone-pc"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Lone GSM
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["lone-a2"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Lone Radio
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["tangent"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Evelyne PC
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["eve-pc"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Evelyne GSM
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["eve-a3"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Peter PC
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["dell"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Peter GSM
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["peter-a1"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Bedroom Chromecast
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["chromecast2"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network Garden Music
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["moto"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
+  - platform: mqtt
+    name: Network TV
+    state_topic: 'telenet/per-host'
+    value_template: '{{ value_json["tv"] | default(0) }}'
+    unit_of_measurement: "MB"
+    icon: mdi:network
 
 # Text to speech
 tts:
