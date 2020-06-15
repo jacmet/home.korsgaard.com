@@ -146,6 +146,16 @@ sensor:
     unit_of_measurement: "°C"
     payload_available: "Online"
 
+  - platform: mqtt
+    name: "Solar Watthours"
+    state_topic: "tele/sonoff-temp/SENSOR"
+    value_template: >
+      {{ (value_json.COUNTER.C1 / 2 + value_json.COUNTER.C2 / 2) | int }}
+    availability_topic: "tele/sonoff-temp/LWT"
+    device_class: "power"
+    unit_of_measurement: "WH"
+    payload_available: "Online"
+
   - platform: pvoutput
     system_id: 2652
     api_key: !secret pvoutput_apikey

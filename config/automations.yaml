@@ -662,3 +662,14 @@
   action:
     service: vacuum.start
     entity_id: vacuum.roborock
+
+- alias: Publish solar watthours to MQTT for pvoutput
+  trigger:
+    platform: state
+    entity_id: sensor.solar_watthours
+  action:
+    service: mqtt.publish
+    data:
+      topic: "solar/watthours"
+      payload_template: "{{ states.sensor.solar_watthours.state }}"
+      retain: true
