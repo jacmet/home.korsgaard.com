@@ -381,6 +381,13 @@ sensor:
     unit_of_measurement: "MB"
     icon: mdi:network
 
+rest_command:
+  pvoutput_addstatus:
+    url: "https://pvoutput.org/service/r2/addstatus.jsp?d={{ now().strftime('%Y%m%d') }}&t={{ now().strftime('%H:%M') }}&v1={{ states.sensor.solar_watthours.state }}&c1=1"
+    headers:
+      X-Pvoutput-Apikey: !secret pvoutput_apikey
+      X-Pvoutput-SystemId: 2652
+
 # Text to speech
 tts:
   - platform: google_translate
