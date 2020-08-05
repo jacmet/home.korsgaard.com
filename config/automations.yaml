@@ -512,13 +512,28 @@
       entity_id: input_boolean.holiday_mode
 
   # holiday automation
-- alias: On entering holiday mode
+- alias: Disable garage door at night when on holiday
   trigger:
-    platform: state
+    platform: time
+    at: '20:00:00'
+  condition:
+    condition: state
     entity_id: input_boolean.holiday_mode
-    to: 'on'
+    state: 'on'
   action:
     service: homeassistant.turn_on
+    entity_id: switch.garage_door_disable
+
+- alias: Enable garage door in the morning when on holiday
+  trigger:
+    platform: time
+    at: '08:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
     entity_id: switch.garage_door_disable
 
 - alias: On leaving holiday mode
