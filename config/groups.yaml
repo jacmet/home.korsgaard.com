@@ -76,6 +76,7 @@ outdoor:
     - light.back_downstairs
     - light.back_upstairs
     - light.pool
+    - light.garden
 
 outdoor-auto:
   name: Outdoor Automation
@@ -96,6 +97,7 @@ garden-auto:
   name: Garden Automation
   entities:
     - light.pool
+    - light.garden
 
 guestroom:
   name: Guestroom

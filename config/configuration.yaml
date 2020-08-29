@@ -571,6 +571,16 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Garden "
+    state_topic: "stat/songarden/POWER"
+    command_topic: "cmnd/songarden/POWER"
+    availability_topic: "tele/songarden/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Living RGB bulb"
     state_topic: "stat/bulb01/POWER"
     command_topic: "cmnd/bulb01/POWER"
