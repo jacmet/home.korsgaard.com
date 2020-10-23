@@ -6,7 +6,13 @@ MQTT_TOPIC=telenet/usage
 MQTT_DELTA_TOPIC=telenet/delta
 DOCKER=telenet-usage:latest
 
-USED=$(docker run --rm $DOCKER $*)
+TRIES=3
+USED=
+while [ -z "$USED" -a "$TRIES" != "0" ]; do
+    USED=$(docker run --rm $DOCKER $*)
+    sleep 1
+    TRIES=$(( TRIES - 1 ))
+done
 [ -n "$USED" ] || exit 1
 
 PREV=$(mosquitto_sub -h $MQTT_HOST -C 1 -t $MQTT_TOPIC 2>/dev/null || echo 0)
