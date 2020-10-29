@@ -914,6 +914,9 @@ media_player:
   - platform: androidtv
     name: Android TV
     host: tv
+  - platform: mpd
+    name: Garden
+    host: garden
 
 vacuum:
   - platform: mqtt
