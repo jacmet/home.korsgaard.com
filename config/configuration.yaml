@@ -67,15 +67,6 @@ emulated_hue:
   advertise_ip: 192.168.1.1
   expose_by_default: true
 
-climate:
-  - platform: knx
-    name: 'Heating'
-    temperature_address: '3/1/8'
-    operation_mode_address: '4/0/0'
-    target_temperature_state_address: '4/0/5'
-    setpoint_shift_address: '4/0/7'
-    max_temp: 30.0
-
 weather:
   - platform: darksky
     api_key: !secret darksky_apikey
@@ -90,11 +81,6 @@ sensor:
       - summary
       - temperature
       - icon
-
-  - platform: 'knx'
-    name: 'Indoor temperature'
-    state_address: '3/1/8'
-    type: 'temperature'
 
   - platform: mqtt
     name: "Attic temperature"
@@ -176,7 +162,6 @@ sensor:
     sensors:
       minutes_to_trash:
         friendly_name: Time in minutes to next trash pickup
-        entity_id: sensor.time
         value_template: >-
           {% if states.calendar.trash.attributes.start_time %}
             {{((as_timestamp(states.calendar.trash.attributes.start_time) - as_timestamp(now())) / 60) | default(99) | int }}
@@ -404,6 +389,179 @@ knx:
       address: '3/1/0'
     - type: 'time'
       address: '3/1/1'
+  climate:
+    - name: 'Heating'
+      temperature_address: '3/1/8'
+      operation_mode_address: '4/0/0'
+      target_temperature_state_address: '4/0/5'
+      setpoint_shift_address: '4/0/7'
+      max_temp: 30.0
+  cover:
+    - name: "Bedroom both curtain"
+      move_long_address: "3/1/2"
+      move_short_address: "3/1/3"
+      travelling_time_down: 40
+      travelling_time_up: 40
+
+    - name: "Bedroom right curtain"
+      move_long_address: "3/1/4"
+      move_short_address: "3/1/5"
+      travelling_time_down: 40
+      travelling_time_up: 40
+
+    - name: "Bedroom left curtain"
+      move_long_address: "3/1/6"
+      move_short_address: "3/1/7"
+      travelling_time_down: 40
+      travelling_time_up: 40
+  light:
+    - name: "Kitchen cooking"
+      address: "0/0/1"
+      state_address: "0/1/1"
+
+    - name: "Kitchen closets"
+      address: "0/0/2"
+      state_address: "0/1/2"
+
+    - name: "Kitchen wall"
+      address: "0/0/3"
+      state_address: "0/1/3"
+
+    - name: "Kitchen table"
+      address: "1/0/1"
+      state_address: "1/4/1"
+      brightness_address: "1/2/1"
+      brightness_state_address: "1/3/1"
+
+    - name: "Living Lone"
+      address: "0/0/5"
+      state_address: "0/1/5"
+
+    - name: "Living couch"
+      address: "1/0/2"
+      state_address: "1/4/2"
+      brightness_address: "1/2/2"
+      brightness_state_address: "1/3/2"
+
+    - name: "Living office"
+      address: "1/0/4"
+      state_address: "1/4/4"
+      brightness_address: "1/2/4"
+      brightness_state_address: "1/3/4"
+
+    - name: "Office"
+      address: "0/0/7"
+      state_address: "0/1/7"
+
+    - name: "Stairs wall"
+      address: "0/0/8"
+      state_address: "0/1/8"
+
+    - name: "Dinner table"
+      address: "0/0/9"
+      state_address: "0/1/9"
+
+    - name: "Entrance wall"
+      address: "0/0/10"
+      state_address: "0/1/10"
+
+    - name: "Lone ceiling"
+      address: "0/0/11"
+      state_address: "0/1/11"
+
+    - name: "Lone bed"
+      address: "0/0/12"
+      state_address: "0/1/12"
+
+    - name: "Sibe ceiling"
+      address: "0/0/13"
+      state_address: "0/1/13"
+
+    - name: "Sibe bed"
+      address: "0/0/14"
+      state_address: "0/1/14"
+
+    - name: "Guest room"
+      address: "0/0/15"
+      state_address: "0/1/15"
+
+    - name: "Night hall"
+      address: "0/0/16"
+      state_address: "0/1/16"
+
+    - name: "Evelyne bed"
+      address: "0/0/17"
+      state_address: "0/1/17"
+
+    - name: "Peter bed"
+      address: "0/0/18"
+      state_address: "0/1/18"
+
+    - name: "Bedroom wall"
+      address: "0/0/19"
+      state_address: "0/1/19"
+
+    - name: "Bathroom ceiling"
+      address: "0/0/20"
+      state_address: "0/1/20"
+
+    - name: "Bathroom mirror"
+      address: "0/0/21"
+      state_address: "0/1/21"
+
+    - name: "Front door"
+      address: "0/0/22"
+      state_address: "0/1/22"
+
+    - name: "Back downstairs"
+      address: "0/0/23"
+      state_address: "0/1/23"
+
+    - name: "Back upstairs"
+      address: "0/0/24"
+      state_address: "0/1/24"
+
+    - name: "Lone bed led"
+      address: "0/1/25"
+
+    - name: "Sibe bed led"
+      address: "0/1/26"
+  binary_sensor:
+    - name: "Bedroom Switch 4"
+      state_address: '0/0/4'
+      automation:
+        - hook: 'on'
+          action:
+            - entity_id: light.stars_1
+              service: homeassistant.turn_on
+            - entity_id: light.stars_2
+              service: homeassistant.turn_on
+            - entity_id: light.stars_3
+              service: homeassistant.turn_on
+            - entity_id: light.stars_4
+              service: homeassistant.turn_on
+            - entity_id: light.stars_5
+              service: homeassistant.turn_on
+        - hook: 'off'
+          action:
+            - entity_id: light.stars_1
+              service: homeassistant.turn_off
+            - entity_id: light.stars_2
+              service: homeassistant.turn_off
+            - entity_id: light.stars_3
+              service: homeassistant.turn_off
+            - entity_id: light.stars_4
+              service: homeassistant.turn_off
+            - entity_id: light.stars_5
+              service: homeassistant.turn_off
+
+    - name: 'Heating Sensor'
+      state_address: '4/1/2'
+  sensor:
+    - name: 'Indoor temperature'
+      state_address: '3/1/8'
+      type: 'temperature'
+
 
 device_tracker:
   - platform: ping
@@ -428,24 +586,6 @@ cover:
     payload_available: "Online"
     device_class: "garage"
     qos: 0
-  - platform: knx
-    name: "Bedroom both curtain"
-    move_long_address: "3/1/2"
-    move_short_address: "3/1/3"
-    travelling_time_down: 40
-    travelling_time_up: 40
-  - platform: knx
-    name: "Bedroom right curtain"
-    move_long_address: "3/1/4"
-    move_short_address: "3/1/5"
-    travelling_time_down: 40
-    travelling_time_up: 40
-  - platform: knx
-    name: "Bedroom left curtain"
-    move_long_address: "3/1/6"
-    move_short_address: "3/1/7"
-    travelling_time_down: 40
-    travelling_time_up: 40
 
 fan:
   - platform: mqtt
@@ -732,177 +872,8 @@ light:
     payload_available: "Online"
     qos: 0
 
-  - platform: "knx"
-    name: "Kitchen cooking"
-    address: "0/0/1"
-    state_address: "0/1/1"
-
-  - platform: "knx"
-    name: "Kitchen closets"
-    address: "0/0/2"
-    state_address: "0/1/2"
-
-  - platform: "knx"
-    name: "Kitchen wall"
-    address: "0/0/3"
-    state_address: "0/1/3"
-
-  - platform: "knx"
-    name: "Kitchen table"
-    address: "1/0/1"
-    state_address: "1/4/1"
-    brightness_address: "1/2/1"
-    brightness_state_address: "1/3/1"
-
-  - platform: "knx"
-    name: "Living Lone"
-    address: "0/0/5"
-    state_address: "0/1/5"
-
-  - platform: "knx"
-    name: "Living couch"
-    address: "1/0/2"
-    state_address: "1/4/2"
-    brightness_address: "1/2/2"
-    brightness_state_address: "1/3/2"
-
-  - platform: "knx"
-    name: "Living office"
-    address: "1/0/4"
-    state_address: "1/4/4"
-    brightness_address: "1/2/4"
-    brightness_state_address: "1/3/4"
-
-  - platform: "knx"
-    name: "Office"
-    address: "0/0/7"
-    state_address: "0/1/7"
-
-  - platform: "knx"
-    name: "Stairs wall"
-    address: "0/0/8"
-    state_address: "0/1/8"
-
-  - platform: "knx"
-    name: "Dinner table"
-    address: "0/0/9"
-    state_address: "0/1/9"
-
-  - platform: "knx"
-    name: "Entrance wall"
-    address: "0/0/10"
-    state_address: "0/1/10"
-
-  - platform: "knx"
-    name: "Lone ceiling"
-    address: "0/0/11"
-    state_address: "0/1/11"
-
-  - platform: "knx"
-    name: "Lone bed"
-    address: "0/0/12"
-    state_address: "0/1/12"
-
-  - platform: "knx"
-    name: "Sibe ceiling"
-    address: "0/0/13"
-    state_address: "0/1/13"
-
-  - platform: "knx"
-    name: "Sibe bed"
-    address: "0/0/14"
-    state_address: "0/1/14"
-
-  - platform: "knx"
-    name: "Guest room"
-    address: "0/0/15"
-    state_address: "0/1/15"
-
-  - platform: "knx"
-    name: "Night hall"
-    address: "0/0/16"
-    state_address: "0/1/16"
-
-  - platform: "knx"
-    name: "Evelyne bed"
-    address: "0/0/17"
-    state_address: "0/1/17"
-
-  - platform: "knx"
-    name: "Peter bed"
-    address: "0/0/18"
-    state_address: "0/1/18"
-
-  - platform: "knx"
-    name: "Bedroom wall"
-    address: "0/0/19"
-    state_address: "0/1/19"
-
-  - platform: "knx"
-    name: "Bathroom ceiling"
-    address: "0/0/20"
-    state_address: "0/1/20"
-
-  - platform: "knx"
-    name: "Bathroom mirror"
-    address: "0/0/21"
-    state_address: "0/1/21"
-
-  - platform: "knx"
-    name: "Front door"
-    address: "0/0/22"
-    state_address: "0/1/22"
-
-  - platform: "knx"
-    name: "Back downstairs"
-    address: "0/0/23"
-    state_address: "0/1/23"
-
-  - platform: "knx"
-    name: "Back upstairs"
-    address: "0/0/24"
-    state_address: "0/1/24"
-
-  - platform: "knx"
-    name: "Lone bed led"
-    address: "0/1/25"
-
-  - platform: "knx"
-    name: "Sibe bed led"
-    address: "0/1/26"
 
 binary_sensor:
-  - platform: knx
-    name: "Bedroom Switch 4"
-    state_address: '0/0/4'
-    automation:
-      - hook: 'on'
-        action:
-          - entity_id: light.stars_1
-            service: homeassistant.turn_on
-          - entity_id: light.stars_2
-            service: homeassistant.turn_on
-          - entity_id: light.stars_3
-            service: homeassistant.turn_on
-          - entity_id: light.stars_4
-            service: homeassistant.turn_on
-          - entity_id: light.stars_5
-            service: homeassistant.turn_on
-      - hook: 'off'
-        action:
-          - entity_id: light.stars_1
-            service: homeassistant.turn_off
-          - entity_id: light.stars_2
-            service: homeassistant.turn_off
-          - entity_id: light.stars_3
-            service: homeassistant.turn_off
-          - entity_id: light.stars_4
-            service: homeassistant.turn_off
-          - entity_id: light.stars_5
-            service: homeassistant.turn_off
-  - platform: knx
-    name: 'Heating Sensor'
-    state_address: '4/1/2'
   - platform: workday
     country: BE
   - platform: "mqtt"
