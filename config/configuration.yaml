@@ -133,6 +133,35 @@ sensor:
     payload_available: "Online"
 
   - platform: mqtt
+    name: "Garden house temperature"
+    state_topic: "tele/sonoff-power/SENSOR"
+    value_template: >
+      {{ value_json.BMP280.Temperature }}
+    availability_topic: "tele/sonoff-power/LWT"
+    device_class: "temperature"
+    unit_of_measurement: "°C"
+    payload_available: "Online"
+
+  - platform: mqtt
+    name: "Garden house KWh"
+    state_topic: "tele/sonoff-power/SENSOR"
+    # 400 pulses/KWh
+    value_template: >
+      {{ value_json.COUNTER.C1 / 400 }}
+    availability_topic: "tele/sonoff-power/LWT"
+    device_class: "power"
+    unit_of_measurement: "KWh"
+    payload_available: "Online"
+
+  - platform: derivative
+    name: "Garden house W"
+    source: sensor.garden_house_kwh
+    # input is KWh, calculate W
+    unit_prefix: 'm'
+    unit_time: 'h'
+    round: 0
+
+  - platform: mqtt
     name: "Solar Watthours"
     state_topic: "tele/sonoff-temp/SENSOR"
     value_template: >
@@ -954,6 +983,11 @@ camera:
   - platform: mqtt
     name: "Roborock"
     topic: "valetudo/rockrobo/map"
+
+utility_meter:
+  energy:
+    source: sensor.garden_house_kwh
+    cycle: weekly
 
 system_health:
 
