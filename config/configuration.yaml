@@ -952,6 +952,12 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
+  - platform: template
+    sensors:
+      sauna:
+          friendly_name: 'Sauna running'
+          value_template: >-
+            {{ states('sensor.garden_house_w')|float > 4000 }}
 
 notify:
   - platform: nfandroidtv

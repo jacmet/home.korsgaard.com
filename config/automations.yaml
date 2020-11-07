@@ -689,3 +689,26 @@
         payload_template: "{{ states.sensor.solar_watthours.state }}"
         retain: true
     - service: rest_command.pvoutput_addstatus
+
+- alias: Automatically turn on sauna leds when sauna is running
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sauna
+      to: 'on'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: light.sauna
+
+- alias: Automatically turn off sauna leds 45 mins after sauna is no longer running
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sauna
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 45
+        seconds: 0
+  action:
+    - service: homeassistant.turn_off
+      entity_id: light.sauna
