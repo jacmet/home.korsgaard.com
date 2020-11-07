@@ -182,13 +182,6 @@ sensor:
         value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
         friendly_name: 'Generated'
         unit_of_measurement: 'kWh'
-
-  - platform: time_date
-    display_options:
-      - 'time'
-
-  - platform: template
-    sensors:
       minutes_to_trash:
         friendly_name: Time in minutes to next trash pickup
         value_template: >-
@@ -197,6 +190,10 @@ sensor:
           {%- else -%}
             0
           {%- endif %}
+
+  - platform: time_date
+    display_options:
+      - 'time'
 
   - platform: rest
     resource: http://api.ipify.org/?format=json
