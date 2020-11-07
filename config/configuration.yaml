@@ -766,6 +766,32 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Sauna"
+    state_topic: "stat/sonsauna/POWER"
+    command_topic: "cmnd/sonsauna/POWER"
+    availability_topic: "tele/sonsauna/LWT"
+    brightness_state_topic: "stat/sonsauna/Dimmer"
+    brightness_command_topic: "cmnd/sonsauna/Dimmer"
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    brightness_scale: 100
+    rgb_state_topic: "stat/sonsauna/Color2"
+    rgb_command_topic: "cmnd/sonsauna/Color2"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    effect_state_topic: "stat/sonsauna/Scheme"
+    effect_command_topic: "cmnd/sonsauna/Scheme"
+    effect_value_template: "{{ value_json.Scheme }}"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Garden "
     state_topic: "stat/songarden/POWER"
     command_topic: "cmnd/songarden/POWER"
