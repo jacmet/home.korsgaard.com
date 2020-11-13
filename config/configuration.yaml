@@ -1005,6 +1005,9 @@ media_player:
   - platform: mpd
     name: Garden
     host: garden
+  - platform: mpd
+    name: Living
+    host: glinet
 
 vacuum:
   - platform: mqtt
