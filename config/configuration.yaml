@@ -701,6 +701,36 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Blitzwolf2 switch"
+    state_topic: "stat/blitzwolf2/POWER"
+    command_topic: "cmnd/blitzwolf2/POWER"
+    availability_topic: "tele/blitzwolf2/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Blitzwolf3 switch"
+    state_topic: "stat/blitzwolf3/POWER"
+    command_topic: "cmnd/blitzwolf3/POWER"
+    availability_topic: "tele/blitzwolf3/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "Blitzwolf4 switch"
+    state_topic: "stat/blitzwolf4/POWER"
+    command_topic: "cmnd/blitzwolf4/POWER"
+    availability_topic: "tele/blitzwolf4/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Pool"
     state_topic: "stat/sonoff-pool/POWER1"
     command_topic: "cmnd/sonoff-pool/POWER"
