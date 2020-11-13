@@ -126,4 +126,5 @@ christmas-auto:
   entities:
     - light.switch_1_s20_1
     - light.switch_3_s20_3
-    - light.blitzwolf_switch
+    - light.blitzwolf3_switch
+    - light.blitzwolf4_switch
