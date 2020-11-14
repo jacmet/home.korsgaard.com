@@ -608,6 +608,8 @@ cover:
     state_topic: "stat/sonoff-garage/DOOR"
     state_open: "OPEN"
     state_closed: "CLOSED"
+    state_opening: "OPENING"
+    state_closing: "CLOSING"
     availability_topic: "tele/sonoff-garage/LWT"
     payload_available: "Online"
     device_class: "garage"
