@@ -25,6 +25,14 @@ driver = webdriver.Chrome(options=chrome_options)
 
 driver.get(URL)
 
+time.sleep(3)
+
+try:
+    driver.find_element_by_id('onetrust-accept-btn-handler').click()
+except Exception:
+    sys.stderr.write('Unable to find cookies popup\n')
+    pass
+
 driver.find_element_by_link_text('Aanmelden').click()
 
 time.sleep(3)
