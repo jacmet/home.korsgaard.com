@@ -987,9 +987,14 @@ binary_sensor:
   - platform: template
     sensors:
       sauna:
-          friendly_name: 'Sauna running'
-          value_template: >-
-            {{ states('sensor.garden_house_w')|float > 4000 }}
+        friendly_name: 'Sauna running'
+        value_template: >-
+          {{ states('sensor.garden_house_w')|float > 4000 }}
+      christmas:
+        friendly_name: 'Christmas mode'
+        value_template: >-
+          {% set n = now() %}
+          {{ n.month in [1, 11, 12] }}
 
 notify:
   - platform: nfandroidtv

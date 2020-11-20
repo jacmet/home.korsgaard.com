@@ -24,10 +24,9 @@
     event: sunset
     offset: '-01:0:00'
   condition:
-    condition: template
-    value_template: >
-      {% set n = now() %}
-      {{ n.month in [1, 11, 12] }}
+    condition: state
+    entity_id: binary_sensor.christmas
+    state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: group.christmas_auto
@@ -37,10 +36,9 @@
     platform: time
     at: '23:00:00'
   condition:
-    condition: template
-    value_template: >
-      {% set n = now() %}
-      {{ n.month in [1, 11, 12] }}
+    condition: state
+    entity_id: binary_sensor.christmas
+    state: 'on'
   action:
     service: homeassistant.turn_off
     entity_id: group.christmas_auto
@@ -52,10 +50,9 @@
   condition:
     - condition: sun
       before: sunrise
-    - condition: template
-      value_template: >
-        {% set n = now() %}
-        {{ n.month in [1, 12] }}
+    - condition: state
+      entity_id: binary_sensor.christmas
+      state: 'on'
   action:
     service: homeassistant.turn_on
     entity_id: group.christmas_auto
@@ -66,10 +63,9 @@
     event: sunrise
     offset: '+00:30:00'
   condition:
-    condition: template
-    value_template: >
-      {% set n = now() %}
-      {{ n.month in [1, 12] }}
+    condition: state
+    entity_id: binary_sensor.christmas
+    state: 'on'
   action:
     service: homeassistant.turn_off
     entity_id: group.christmas_auto
@@ -83,7 +79,7 @@
     service: homeassistant.turn_on
     entity_id: group.indoor_auto
 
-- alias: Turn off outdoor lights at sunrise
+- alias: Turn off indoor lights at sunrise
   trigger:
     platform: sun
     event: sunrise
