@@ -708,3 +708,21 @@
   action:
     - service: homeassistant.turn_off
       entity_id: light.sauna
+
+- alias: Turn on/off stars lights when bedroom switch is toggled
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_switch_4
+  action:
+    - service: >
+        {% if trigger.to_state.state == "on" %}
+          homeassistant.turn_on
+        {% else %}
+          homeassistant.turn_off
+        {% endif %}
+      entity_id:
+        - light.stars_1
+        - light.stars_2
+        - light.stars_3
+        - light.stars_4
+        - light.stars_5

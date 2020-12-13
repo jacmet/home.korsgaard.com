@@ -587,32 +587,6 @@ knx:
   binary_sensor:
     - name: "Bedroom Switch 4"
       state_address: '0/0/4'
-      automation:
-        - hook: 'on'
-          action:
-            - entity_id: light.stars_1
-              service: homeassistant.turn_on
-            - entity_id: light.stars_2
-              service: homeassistant.turn_on
-            - entity_id: light.stars_3
-              service: homeassistant.turn_on
-            - entity_id: light.stars_4
-              service: homeassistant.turn_on
-            - entity_id: light.stars_5
-              service: homeassistant.turn_on
-        - hook: 'off'
-          action:
-            - entity_id: light.stars_1
-              service: homeassistant.turn_off
-            - entity_id: light.stars_2
-              service: homeassistant.turn_off
-            - entity_id: light.stars_3
-              service: homeassistant.turn_off
-            - entity_id: light.stars_4
-              service: homeassistant.turn_off
-            - entity_id: light.stars_5
-              service: homeassistant.turn_off
-
     - name: 'Heating Sensor'
       state_address: '4/1/2'
   sensor:
