@@ -726,3 +726,41 @@
         - light.stars_3
         - light.stars_4
         - light.stars_5
+
+- alias: Handle sonoff-rfid tag Scan
+  mode: single
+  # Hide warnings when triggered while in delay.
+  max_exceeded: silent
+  variables:
+    # Map tag ID to content
+    tags:
+      000C5126: radio-radioabc
+      000C38B8: radio-los40
+      000C365A: radio-qmusic
+      0007D4E2: radio-joefm
+      000C8782: radio-nostalgie
+      000C56AA: celine-dion
+      000740DD: julio-iglesias
+      000B7B3C: xmas
+      0007579A: 80s-90s
+      00077893: silence
+  trigger:
+    platform: state
+    entity_id: sensor.rfid_tag
+  condition:
+    # Test that we support this tag
+    - "{{ trigger.to_state.state in tags }}"
+  action:
+    - variables:
+        media_content_id: "{{ tags[trigger.to_state.state] }}"
+    - service: homeassistant.turn_on
+      entity_id: light.sonrfid
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.living
+        media_content_id: "{{ media_content_id }}"
+        media_content_type: playlist
+    - delay: 0.5
+    - service: homeassistant.turn_off
+      entity_id: light.sonrfid
+    - delay: 1 # timeout before we allow processing next scan

@@ -189,6 +189,14 @@ sensor:
     unit_of_measurement: "WH"
     payload_available: "Online"
 
+  - platform: mqtt
+    name: "RFID Tag"
+    state_topic: "tele/sonoff-rfid/SENSOR"
+    value_template: >
+      {{ value_json.RDM6300.UID }}
+    availability_topic: "tele/sonoff-rfid/LWT"
+    payload_available: "Online"
+
   - platform: pvoutput
     system_id: 2652
     api_key: !secret pvoutput_apikey
@@ -821,6 +829,40 @@ light:
       - 2
       - 3
       - 4
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
+    name: "sonRFID"
+    state_topic: "stat/sonoff-rfid/POWER"
+    command_topic: "cmnd/sonoff-rfid/POWER"
+    availability_topic: "tele/sonoff-rfid/LWT"
+    brightness_state_topic: "stat/sonoff-rfid/Dimmer"
+    brightness_command_topic: "cmnd/sonoff-rfid/Dimmer"
+    brightness_value_template: "{{ value_json.Dimmer }}"
+    brightness_scale: 100
+    rgb_state_topic: "stat/sonoff-rfid/Color2"
+    rgb_command_topic: "cmnd/sonoff-rfid/Color2"
+    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+    effect_state_topic: "stat/sonoff-rfid/Scheme"
+    effect_command_topic: "cmnd/sonoff-rfid/Scheme"
+    effect_value_template: "{{ value_json.Scheme }}"
+    effect_list:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
