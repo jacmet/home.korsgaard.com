@@ -755,6 +755,14 @@
         media_content_id: "{{ tags[trigger.to_state.state] }}"
     - service: homeassistant.turn_on
       entity_id: light.sonrfid
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.living
+        shuffle: true
+    - service: media_player.repeat_set
+      data:
+        entity_id: media_player.living
+        repeat: all
     - service: media_player.play_media
       data:
         entity_id: media_player.living
