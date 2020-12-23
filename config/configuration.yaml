@@ -220,13 +220,13 @@ sensor:
         friendly_name: 'Rain water tank percentage'
         unit_of_measurement: '%'
         value_template: >-
-          {% set low = 300 %}
+          {% set low = 250 %}
           {% set high = 2500 %}
           {% set v = states.sensor.rainwater_distance.state | int  - low %}
           {% if v < 0 %}
-            0
-          {% elif v > high %}
             100
+          {% elif v > high %}
+            0
           {% else %}
             {{ (100 - 100*v/(high - low)) | round(1) }}
           {% endif %}
