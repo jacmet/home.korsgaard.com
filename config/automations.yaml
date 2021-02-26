@@ -744,28 +744,33 @@
       000B7B3C: xmas
       0007579A: 80s-90s
       00077893: silence
+    players:
+      Living: media_player.living
+      Garden: media_player.garden
   trigger:
     platform: state
     entity_id: sensor.rfid_tag
   condition:
     # Test that we support this tag
     - "{{ trigger.to_state.state in tags }}"
+    - "{{ states('input_select.current_player') in players }}"
   action:
     - variables:
         media_content_id: "{{ tags[trigger.to_state.state] }}"
+        media_player: "{{ players[states('input_select.current_player')] }}"
     - service: homeassistant.turn_on
       entity_id: light.sonrfid
     - service: media_player.shuffle_set
       data:
-        entity_id: media_player.living
+        entity_id: "{{ media_player }}"
         shuffle: true
     - service: media_player.repeat_set
       data:
-        entity_id: media_player.living
+        entity_id: "{{ media_player }}"
         repeat: all
     - service: media_player.play_media
       data:
-        entity_id: media_player.living
+        entity_id: "{{ media_player }}"
         media_content_id: "{{ media_content_id }}"
         media_content_type: playlist
     - delay: 0.5
@@ -785,3 +790,105 @@
         homeassistant.turn_off
       {% endif %}
     entity_id: light.blitzwolf_switch
+
+- alias: Living set volume
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.volume_living
+  action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living
+        volume_level: >
+          {{states('input_number.volume_living') | int / 100}}
+
+- alias: Living update volume slider
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: sensor.volume_living
+    - platform: homeassistant
+      event: start
+  condition:
+    condition: state
+    entity_id: media_player.living # receiver must be on to set the volume, without this would throw error on startup
+    state: 'on'
+  action:
+    - delay:
+        seconds: 3
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.volume_living
+        value: '{{ trigger.to_state.state }}'
+
+- alias: Garden set volume
+  initial_state: 'on'
+  trigger:
+    platform: state
+    entity_id: input_number.volume_garden
+  action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.garden
+        volume_level: >
+          {{states('input_number.volume_garden') | int / 100}}
+
+- alias: Garden update volume slider
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: sensor.volume_garden
+    - platform: homeassistant
+      event: start
+  condition:
+    condition: state
+    entity_id: media_player.garden # receiver must be on to set the volume, without this would throw error on startup
+    state: 'on'
+  action:
+    - delay:
+        seconds: 3
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.volume_garden
+        value: '{{ trigger.to_state.state }}'
+
+- alias: Play current playlist
+  variables:
+    playlists:
+      Topradio: radio-topradio
+      Radio ABC: radio-radioabc
+      QMusic: radio-qmusic
+      Los40: radio-los40
+      MNM Hits: radio-mnmhits
+      Studio Brussels: radio-stubru
+      Joe FM: radio-joefm
+      ANR: radio-anr
+      Nostalgie: radio-nostalgie
+      Julio Iglesias: julio-iglesias
+      Silence: silence
+      80s-90s: 80s-90s
+      Celine Dion: celine-dion
+    players:
+      Living: media_player.living
+      Garden: media_player.garden
+  trigger:
+    platform: state
+    entity_id: input_select.current_playlist
+  action:
+    - variables:
+        media_content_id: "{{ playlists[states('input_select.current_playlist')] }}"
+        media_player: "{{ players[states('input_select.current_player')] }}"
+    - service: media_player.shuffle_set
+      data:
+        entity_id: "{{ media_player }}"
+        shuffle: true
+    - service: media_player.repeat_set
+      data:
+        entity_id: "{{ media_player }}"
+        repeat: all
+    - service: media_player.play_media
+      data:
+        entity_id: "{{ media_player }}"
+        media_content_id: "{{ media_content_id }}"
+        media_content_type: playlist

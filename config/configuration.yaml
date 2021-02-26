@@ -204,6 +204,20 @@ sensor:
 
   - platform: template
     sensors:
+      volume_living:
+        value_template: >
+          {% if is_state('media_player.living', 'on')  %}
+            {{ (state_attr('media_player.living', 'volume_level') * 100) | int }}
+          {% endif %}
+        friendly_name: Living volume level
+        icon_template: mdi:volume-medium
+      volume_garden:
+        value_template: >
+          {% if is_state('media_player.garden', 'on')  %}
+            {{ (state_attr('media_player.garden', 'volume_level') * 100) | int }}
+          {% endif %}
+        friendly_name: Living volume level
+        icon_template: mdi:volume-medium
       energy_generation:
         value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
         friendly_name: 'Generated'
@@ -645,6 +659,46 @@ input_boolean:
     name: "away on holiday"
     initial: off
     icon: mdi:airplane-takeoff
+
+input_number:
+  volume_living:
+    icon: mdi:volume-medium
+    name: Volume living
+    initial: 50
+    min: 1
+    max: 100
+    step: 1
+
+  volume_garden:
+    icon: mdi:volume-medium
+    name: Volume garden
+    initial: 50
+    min: 1
+    max: 100
+    step: 1
+
+input_select:
+  current_player:
+    name: Current media player
+    options:
+      - Garden
+      - Living
+  current_playlist:
+    name: Current playlist
+    options:
+      - Topradio
+      - Radio ABC
+      - QMusic
+      - Los40
+      - MNM Hits
+      - Studio Brussels
+      - Joe FM
+      - ANR
+      - Nostalgie
+      - Julio Iglesias
+      - Silence
+      - 80s-90s
+      - Celine Dion
 
 switch:
   - platform: template
