@@ -647,7 +647,10 @@ knx:
     - name: 'Indoor temperature'
       state_address: '3/1/8'
       type: 'temperature'
-
+  switch:
+    - name: "Heating"
+      address: "4/0/2"
+      state_address: "4/1/2"
 
 device_tracker:
   - platform: ping
