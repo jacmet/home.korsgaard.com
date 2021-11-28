@@ -489,6 +489,21 @@ rest_command:
 tts:
   - platform: google_translate
 
+climate:
+  - platform: generic_thermostat
+    name: HA heating
+    heater: switch.heating
+    target_sensor: sensor.zigbee_temperature_4
+    min_temp: 15
+    max_temp: 25
+    target_temp: 20.5
+    cold_tolerance: 0.5
+    hot_tolerance: 0.5
+    min_cycle_duration: "00:30:00"
+    initial_hvac_mode: "off"
+    away_temp: 16
+    precision: 0.1
+
 knx:
   fire_event: True
   fire_event_filter: "3/0/*"
