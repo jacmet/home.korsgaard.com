@@ -383,6 +383,19 @@
       data_template:
         entity_id: "{{ trigger.entity_id }}"
 
+- alias: Automatically close garage door after 1h
+  trigger:
+    - platform: state
+      entity_id: cover.garage_door
+      to: 'open'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
 - alias: Turn on Sibes lego light at 21:00
   trigger:
     platform: time
@@ -488,6 +501,20 @@
     - service: notify.hangout_peter
       data:
         message: "Front door open for more than 10 mins!"
+
+- alias: Alert about leaving garage door open for more than 10 mins
+  trigger:
+    platform: state
+    entity_id: cover.garage_door
+    to: 'open'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  action:
+    - service: notify.hangout_peter
+      data:
+        message: "Garage door open for more than 10 mins!"
 
 - alias: Enable holiday mode when away
   trigger:
