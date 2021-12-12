@@ -1203,7 +1203,7 @@ vacuum:
 camera:
   - platform: mqtt
     name: "Roborock"
-    topic: "valetudo/rockrobo/map"
+    topic: "valetudo/rockrobo/MapData/map"
 
 utility_meter:
   energy:
