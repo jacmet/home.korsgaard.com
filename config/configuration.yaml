@@ -811,6 +811,16 @@ light:
     qos: 0
 
   - platform: mqtt
+    name: "Sonsock4 switch"
+    state_topic: "stat/sonsock4/POWER"
+    command_topic: "cmnd/sonsock4/POWER"
+    availability_topic: "tele/sonsock4/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
+  - platform: mqtt
     name: "Blitzwolf switch"
     state_topic: "stat/blitzwolf/POWER"
     command_topic: "cmnd/blitzwolf/POWER"
