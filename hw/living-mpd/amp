@@ -1,0 +1,19 @@
+#!/bin/sh
+# control gpio through sysfs for onkyo-ri
+echo -e "Content-type: text/plain\r"
+echo -e "\r"
+
+# gpio number
+NR=20
+
+if [ ! -d /sys/class/gpio/gpio$NR ];
+then
+        echo $NR >/sys/class/gpio/export
+        echo low >/sys/class/gpio/gpio$NR/direction
+fi
+
+# reset attiny85
+echo 0 >/sys/class/gpio/gpio$NR/value
+echo 1 >/sys/class/gpio/gpio$NR/value
+
+echo "on"

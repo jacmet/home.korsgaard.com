@@ -1,0 +1,19 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+logger in rc.local
+
+for i in $(seq 60); do
+  if ping -c 1 -W 1 -q 192.168.1.1; then
+    logger 192.168.1.1 up after $i seconds
+    mkdir -p /mnt/music
+    mount -t nfs 192.168.1.1:/mnt/music /mnt/music -o nolock,ro
+    /etc/init.d/mpd restart
+    exit 0;
+  fi
+
+  sleep 1
+done
+
+logger timed out waiting for 192.168.1.1
+exit 0
