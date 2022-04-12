@@ -1,0 +1,16 @@
+blitzwolf4: shp plug for 3D printer
+blitzwolf: shp plug for Lone mirror
+bulb01: RGB bulb for living room
+roomba: wemos d1 w/ IR TX for roomba control
+shelly1: shell 1 for tablet power control
+sonfanup: sonoff basic for upstairs fan control
+songarage: wemos d1 w/ keypad + relay module for garage door
+songarden: sonoff basic for garden lights (at pool)
+sonir: wemos d1 w/ IR RX + relay for Sibe Lego
+sonleds: wemos d1 + relay modules for house LEDs
+sonpool: h801 12V RGB + W for fish pool
+sonpower: wemos d1 for garden house temperatur + sauna KWH counter
+sonsauna: magichome 12V RGB LED strip in sauna
+sonsock3: sonoff s20 bulb for kitchen fish tank light
+sontemp: wemos d1 for solar KWH + 2x 1wire temp sensors (Lone/Sibe)
+sontv: arilux 12V W LED strip around TV
