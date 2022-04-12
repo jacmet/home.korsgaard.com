@@ -840,7 +840,7 @@
   condition:
     condition: state
     entity_id: media_player.living # receiver must be on to set the volume, without this would throw error on startup
-    state: 'on'
+    state: 'playing'
   action:
     - delay:
         seconds: 3
@@ -871,7 +871,7 @@
   condition:
     condition: state
     entity_id: media_player.garden # receiver must be on to set the volume, without this would throw error on startup
-    state: 'on'
+    state: 'playing'
   action:
     - delay:
         seconds: 3
