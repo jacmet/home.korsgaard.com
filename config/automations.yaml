@@ -919,3 +919,12 @@
         entity_id: "{{ media_player }}"
         media_content_id: "{{ media_content_id }}"
         media_content_type: playlist
+
+- alias: Enable livingroom amplifier when starting to play
+  trigger:
+    platform: state
+    entity_id: media_player.living
+    from: 'off'
+    to: 'playing'
+  action:
+    - service: rest_command.living_amp
