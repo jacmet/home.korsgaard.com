@@ -25,6 +25,9 @@ config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.16.20.0/24
 
 # Checks for available updates
 # Note: This component will send some information about your system to
