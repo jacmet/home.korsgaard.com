@@ -274,7 +274,7 @@
   action:
     - service: climate.set_preset_mode
       data:
-        entity_id: climate.heating
+        entity_id: climate.ha_heating
         preset_mode: 'comfort'
 
 - alias: Turn on heating in the afternoon during the winter
@@ -292,7 +292,7 @@
   action:
     - service: climate.set_preset_mode
       data:
-        entity_id: climate.heating
+        entity_id: climate.ha_heating
         preset_mode: 'comfort'
 
 - alias: Turn off heating on work days when nobody is home
@@ -313,7 +313,7 @@
   action:
     - service: climate.set_preset_mode
       data:
-        entity_id: climate.heating
+        entity_id: climate.ha_heating
         preset_mode: 'away'
 
 - alias: Turn off heating at night
@@ -323,7 +323,7 @@
   action:
     - service: climate.set_preset_mode
       data:
-        entity_id: climate.heating
+        entity_id: climate.ha_heating
         preset_mode: 'away'
 
 - alias: Turn on entrance wall light on motion after dark

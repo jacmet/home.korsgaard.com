@@ -516,13 +516,6 @@ knx:
       address: '3/1/0'
     - type: 'time'
       address: '3/1/1'
-  climate:
-    - name: 'Heating'
-      temperature_address: '3/1/8'
-      operation_mode_address: '4/0/0'
-      target_temperature_state_address: '4/0/5'
-      setpoint_shift_address: '4/0/7'
-      max_temp: 30.0
   cover:
     - name: "Bedroom both curtain"
       move_long_address: "3/1/2"
@@ -656,12 +649,6 @@ knx:
   binary_sensor:
     - name: "Bedroom Switch 4"
       state_address: '0/0/4'
-    - name: 'Heating Sensor'
-      state_address: '4/1/2'
-  sensor:
-    - name: 'Indoor temperature'
-      state_address: '3/1/8'
-      type: 'temperature'
   switch:
     - name: "Heating"
       address: "4/0/2"
