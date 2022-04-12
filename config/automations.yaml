@@ -409,7 +409,7 @@
     platform: event
     event_type: knx_event
     event_data:
-      address: "3/0/2"
+      destination: "3/0/2"
   action:
     service: homeassistant.turn_off
     entity_id: group.upstairs_auto_off
@@ -419,7 +419,7 @@
     platform: event
     event_type: knx_event
     event_data:
-      address: "3/0/3"
+      destination: "3/0/3"
   action:
     service: homeassistant.turn_off
     entity_id: group.downstairs_auto_off
