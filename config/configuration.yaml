@@ -771,6 +771,16 @@ switch:
     payload_on: "true"
     payload_off: "false"
 
+  - platform: mqtt
+    name: "Tablet Charger"
+    state_topic: "stat/shelly1-tablet/POWER"
+    command_topic: "cmnd/shelly1-tablet/POWER"
+    availability_topic: "tele/shelly1-tablet/LWT"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    qos: 0
+
 light:
   - platform: mqtt
     name: "switch 1 (s20-1)"
