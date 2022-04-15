@@ -913,7 +913,12 @@
     - service: media_player.repeat_set
       data:
         entity_id: "{{ media_player }}"
-        repeat: all
+        repeat: >
+          {% if 'radio-' in media_content_id %}
+            off
+          {% else %}
+            all
+          {% endif %}
     - service: media_player.play_media
       data:
         entity_id: "{{ media_player }}"
