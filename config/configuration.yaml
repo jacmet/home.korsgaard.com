@@ -1165,10 +1165,6 @@ notify:
   - platform: nfandroidtv
     name: TV
     host: tv
-  - platform: hangouts
-    name: Hangout Peter
-    default_conversations:
-      - id: "Ugy8UI6d89muy9Fb8RR4AaABAagB0YnfAg"
 
 media_player:
   - platform: androidtv
