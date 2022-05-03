@@ -811,25 +811,6 @@
         volume_level: >
           {{states('input_number.volume_living') | int / 100}}
 
-- alias: Living update volume slider
-  initial_state: 'on'
-  trigger:
-    - platform: state
-      entity_id: sensor.volume_living
-    - platform: homeassistant
-      event: start
-  condition:
-    condition: state
-    entity_id: media_player.living # receiver must be on to set the volume, without this would throw error on startup
-    state: 'playing'
-  action:
-    - delay:
-        seconds: 3
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.volume_living
-        value: '{{ trigger.to_state.state }}'
-
 - alias: Garden set volume
   initial_state: 'on'
   trigger:
@@ -841,25 +822,6 @@
         entity_id: media_player.garden
         volume_level: >
           {{states('input_number.volume_garden') | int / 100}}
-
-- alias: Garden update volume slider
-  initial_state: 'on'
-  trigger:
-    - platform: state
-      entity_id: sensor.volume_garden
-    - platform: homeassistant
-      event: start
-  condition:
-    condition: state
-    entity_id: media_player.garden # receiver must be on to set the volume, without this would throw error on startup
-    state: 'playing'
-  action:
-    - delay:
-        seconds: 3
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.volume_garden
-        value: '{{ trigger.to_state.state }}'
 
 - alias: Play current playlist
   variables:
