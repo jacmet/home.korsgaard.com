@@ -115,13 +115,13 @@
     offset: '-00:10:00'
   condition:
     - condition: template
-      # from April to end of October
-      value_template: "{{ now().month in range(4, 11) }}"
+      # from May to end of September
+      value_template: "{{ now().month in range(5, 10) }}"
     - condition: state
       entity_id: input_boolean.holiday_mode
       state: 'off'
     - condition: time
-      before: '23:00:00'
+      before: '22:00:00'
   action:
     service: homeassistant.turn_on
     entity_id: group.garden_auto
@@ -129,7 +129,7 @@
 - alias: Turn off garden lights at night
   trigger:
     platform: time
-    at: '23:00:00'
+    at: '22:00:00'
   action:
     service: homeassistant.turn_off
     entity_id: group.garden_auto
