@@ -342,13 +342,13 @@
     service: homeassistant.turn_on
     entity_id: light.entrance_wall
 
-- alias: Turn off entrance wall light 5 minutes after motion after dark
+- alias: Turn off entrance wall light 1 minute after motion after dark
   trigger:
     platform: state
     entity_id: binary_sensor.zigbee_motion_sensor
     to: 'off'
     for:
-      minutes: 5
+      minutes: 1
   condition:
     condition: or
     conditions:
