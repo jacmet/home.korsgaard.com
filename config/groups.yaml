@@ -127,3 +127,21 @@ christmas-auto:
     - light.switch_3_s20_3
     - light.blitzwolf2_switch
     - light.blitzwolf3_switch
+
+downstairs:
+  name: Downstairs
+  entities:
+    - group.entrance
+    - group.kitchen
+    - group.living
+    - group.office
+
+upstairs:
+  name: Upstairs
+  entities:
+    - group.nighthall
+    - group.sibe
+    - group.lone
+    - group.bathroom
+    - group.bedroom
+    - group.guestroom
