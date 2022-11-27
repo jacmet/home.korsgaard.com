@@ -4,6 +4,8 @@ entrance:
     - light.entrance_wall
     - light.stairs_wall
     - light.dinner_table
+    - light.terras
+    - light.switch_3_s20_3
 
 kitchen:
   name: Kitchen
@@ -65,6 +67,11 @@ bedroom:
     - light.evelyne_bed
     - light.peter_bed
     - light.bedroom_wall
+    - light.stars_1
+    - light.stars_2
+    - light.stars_3
+    - light.stars_4
+    - light.stars_5
 
 outdoor:
   name: Outdoor
