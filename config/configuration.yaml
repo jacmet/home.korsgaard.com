@@ -667,7 +667,7 @@ knx:
 device_tracker:
   - platform: ping
     hosts:
-      digicorder: '192.168.0.100'
+      digicorder: 'tv'
       sibe_pc: 'sibe-pc'
       lone_pc: 'lone-pc'
       peter_pc: 'dell'
