@@ -134,6 +134,7 @@ christmas-auto:
     - light.switch_3_s20_3
     - light.blitzwolf2_switch
     - light.blitzwolf3_switch
+    - light.sonsock4_switch
 
 downstairs:
   name: Downstairs
