@@ -508,8 +508,8 @@ climate:
     min_temp: 15
     max_temp: 25
     target_temp: 20.5
-    cold_tolerance: 0.3
-    hot_tolerance: 0.3
+    cold_tolerance: 0.2
+    hot_tolerance: 0.2
     min_cycle_duration: "00:30:00"
     initial_hvac_mode: "off"
     away_temp: 16
