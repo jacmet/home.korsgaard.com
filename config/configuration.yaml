@@ -69,24 +69,6 @@ emulated_hue:
 # Sensors
 sensor:
   - platform: mqtt
-    name: "Rainwater distance"
-    state_topic: "tele/sonoff-water/RESULT"
-    value_template: >
-      {{ value_json.SSerialReceived | regex_findall_index("Gap=(\d+)mm") }}
-    availability_topic: "tele/sonoff-water/LWT"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "Rainwater voltage"
-    state_topic: "tele/sonoff-water/SENSOR"
-    value_template: >
-      {{ value_json.ANALOG['Range'] }}
-    device_class: "battery"
-    unit_of_measurement: "mV"
-    availability_topic: "tele/sonoff-water/LWT"
-    payload_available: "Online"
-
-  - platform: mqtt
     name: "Attic temperature"
     state_topic: "tele/sonoff-fanup/SENSOR"
     value_template: >
@@ -232,20 +214,6 @@ sensor:
           {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int(0) }}
         friendly_name: Garden volume level
         icon_template: mdi:volume-medium
-      rainwater_percentage:
-        friendly_name: 'Rain water tank percentage'
-        unit_of_measurement: '%'
-        value_template: >-
-          {% set low = 250 %}
-          {% set high = 2500 %}
-          {% set v = states.sensor.rainwater_distance.state | int(0)  - low %}
-          {% if v < 0 %}
-            100
-          {% elif v > high %}
-            0
-          {% else %}
-            {{ (100 - 100*v/(high - low)) | round(1) }}
-          {% endif %}
 
   - platform: time_date
     display_options:
