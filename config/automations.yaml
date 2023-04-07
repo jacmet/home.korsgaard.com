@@ -846,7 +846,7 @@
   action:
     - service: media_player.volume_set
       data_template:
-        entity_id: media_player.living
+        entity_id: media_player.snapcast_client_e4_95_6e_40_0a_ed
         volume_level: >
           {{states('input_number.volume_living') | int / 100}}
 
@@ -858,9 +858,63 @@
   action:
     - service: media_player.volume_set
       data_template:
-        entity_id: media_player.garden
+        entity_id: media_player.snapcast_client_f0_fd_a0_10_92_79
         volume_level: >
           {{states('input_number.volume_garden') | int / 100}}
+
+- alias: Living set source
+  variables:
+    sources:
+      None: none
+      Radio: mpd
+      Spotify: spotify
+  trigger:
+    platform: state
+    entity_id: input_select.living_source
+  action:
+    - variables:
+        src: "{{ sources[states('input_select.living_source')] }}"
+        media_player: media_player.snapcast_client_e4_95_6e_40_0a_ed
+    - service: media_player.volume_mute
+      data:
+        entity_id: "{{ media_player }}"
+        is_volume_muted: >
+          {% if 'none' in src %}
+            true
+          {% else %}
+            false
+          {% endif %}
+    - service: media_player.select_source
+      data:
+        entity_id: "{{ media_player }}"
+        source: "{{ src }}"
+
+- alias: Garden set source
+  variables:
+    sources:
+      None: none
+      Radio: mpd
+      Spotify: spotify
+  trigger:
+    platform: state
+    entity_id: input_select.garden_source
+  action:
+    - variables:
+        src: "{{ sources[states('input_select.garden_source')] }}"
+        media_player: media_player.snapcast_client_f0_fd_a0_10_92_79
+    - service: media_player.volume_mute
+      data:
+        entity_id: "{{ media_player }}"
+        is_volume_muted: >
+          {% if 'none' in src %}
+            true
+          {% else %}
+            false
+          {% endif %}
+    - service: media_player.select_source
+      data:
+        entity_id: "{{ media_player }}"
+        source: "{{ src }}"
 
 - alias: Play current playlist
   variables:
@@ -880,7 +934,7 @@
       80s-90s: 80s-90s
       Celine Dion: celine-dion
     players:
-      Living: media_player.living
+      Living: media_player.mpd
       Garden: media_player.garden
   trigger:
     platform: state
@@ -911,7 +965,7 @@
 - alias: Enable livingroom amplifier when starting to play
   trigger:
     platform: state
-    entity_id: media_player.living
+    entity_id: media_player.mpd
     from: 'off'
     to: 'playing'
   action:

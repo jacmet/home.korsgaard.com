@@ -246,17 +246,13 @@ sensor:
     sensors:
       volume_living:
         value_template: >
-          {% if is_state('media_player.living', 'playing')  %}
-            {{ (state_attr('media_player.living', 'volume_level') * 100) | int }}
-          {% endif %}
+          {{ (state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'volume_level') * 100) | int }}
         friendly_name: Living volume level
         icon_template: mdi:volume-medium
       volume_garden:
         value_template: >
-          {% if is_state('media_player.garden', 'playing')  %}
-            {{ (state_attr('media_player.garden', 'volume_level') * 100) | int }}
-          {% endif %}
-        friendly_name: Living volume level
+          {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int }}
+        friendly_name: Garden volume level
         icon_template: mdi:volume-medium
       energy_generation:
         value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
@@ -747,6 +743,18 @@ input_select:
       - Silence
       - 80s-90s
       - Celine Dion
+  living_source:
+    name: Living room audio source
+    options:
+      - None
+      - Radio
+      - Spotify
+  garden_source:
+    name: Garden audio source
+    options:
+      - None
+      - Radio
+      - Spotify
 
 switch:
   - platform: template
@@ -1176,11 +1184,10 @@ media_player:
     name: Android TV
     host: tv
   - platform: mpd
-    name: Garden
-    host: garden
-  - platform: mpd
-    name: Living
-    host: glinet
+    name: MPD
+    host: hp54
+  - platform: snapcast
+    host: hp54
 
 vacuum:
   - platform: mqtt
