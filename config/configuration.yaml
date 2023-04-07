@@ -223,7 +223,7 @@ sensor:
     name: "Solar Watthours"
     state_topic: "tele/sonoff-temp/SENSOR"
     value_template: >
-      {{ (value_json.COUNTER.C1 / 2 + value_json.COUNTER.C2 / 2) | int }}
+      {{ (value_json.COUNTER.C1 / 2 + value_json.COUNTER.C2 / 2) | int(0) }}
     availability_topic: "tele/sonoff-temp/LWT"
     device_class: "power"
     unit_of_measurement: "WH"
@@ -246,23 +246,23 @@ sensor:
     sensors:
       volume_living:
         value_template: >
-          {{ (state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'volume_level') * 100) | int }}
+          {{ (state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'volume_level') * 100) | int(0) }}
         friendly_name: Living volume level
         icon_template: mdi:volume-medium
       volume_garden:
         value_template: >
-          {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int }}
+          {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int(0) }}
         friendly_name: Garden volume level
         icon_template: mdi:volume-medium
       energy_generation:
-        value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
+        value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float(0)/1000) }}{% endif %}'
         friendly_name: 'Generated'
         unit_of_measurement: 'kWh'
       minutes_to_trash:
         friendly_name: Time in minutes to next trash pickup
         value_template: >-
           {% if states.calendar.trash.attributes.start_time %}
-            {{((as_timestamp(states.calendar.trash.attributes.start_time) - as_timestamp(now())) / 60) | default(99) | int }}
+            {{((as_timestamp(states.calendar.trash.attributes.start_time) - as_timestamp(now())) / 60) | default(99) | int(0) }}
           {%- else -%}
             0
           {%- endif %}
@@ -272,7 +272,7 @@ sensor:
         value_template: >-
           {% set low = 250 %}
           {% set high = 2500 %}
-          {% set v = states.sensor.rainwater_distance.state | int  - low %}
+          {% set v = states.sensor.rainwater_distance.state | int(0)  - low %}
           {% if v < 0 %}
             100
           {% elif v > high %}
