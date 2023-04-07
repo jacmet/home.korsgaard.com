@@ -481,20 +481,6 @@
       data:
         message: "Garage door keypad alarm triggered!"
 
-- alias: Alert about upcoming trash pickup at 20:00
-  trigger:
-    platform: state
-    entity_id: sensor.minutes_to_trash
-    to: '240'
-  condition:
-    condition: state
-    entity_id: input_boolean.holiday_mode
-    state: 'off'
-  action:
-    - service: notify.mobile_app_peters_mi_a1
-      data_template:
-        message: "Do not forget to put out trash for tomorrow: {{ states.calendar.trash.attributes.message }}"
-
 - alias: Alert about opening of doors when on holiday
   trigger:
     - platform: state

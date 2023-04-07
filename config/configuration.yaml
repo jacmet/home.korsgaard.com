@@ -254,14 +254,6 @@ sensor:
           {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int(0) }}
         friendly_name: Garden volume level
         icon_template: mdi:volume-medium
-      minutes_to_trash:
-        friendly_name: Time in minutes to next trash pickup
-        value_template: >-
-          {% if states.calendar.trash.attributes.start_time %}
-            {{((as_timestamp(states.calendar.trash.attributes.start_time) - as_timestamp(now())) / 60) | default(99) | int(0) }}
-          {%- else -%}
-            0
-          {%- endif %}
       rainwater_percentage:
         friendly_name: 'Rain water tank percentage'
         unit_of_measurement: '%'
