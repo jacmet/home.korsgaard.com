@@ -254,10 +254,6 @@ sensor:
           {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int(0) }}
         friendly_name: Garden volume level
         icon_template: mdi:volume-medium
-      energy_generation:
-        value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float(0)/1000) }}{% endif %}'
-        friendly_name: 'Generated'
-        unit_of_measurement: 'kWh'
       minutes_to_trash:
         friendly_name: Time in minutes to next trash pickup
         value_template: >-
