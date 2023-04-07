@@ -66,21 +66,8 @@ emulated_hue:
   advertise_ip: 192.168.1.1
   expose_by_default: true
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_apikey
-    mode: daily
-
 # Sensors
 sensor:
-  # Weather prediction
-  - platform: darksky
-    api_key: !secret darksky_apikey
-    monitored_conditions:
-      - summary
-      - temperature
-      - icon
-
   - platform: mqtt
     name: "Rainwater distance"
     state_topic: "tele/sonoff-water/RESULT"
