@@ -60,12 +60,6 @@ map:
 # Track the sun
 sun:
 
-# hue emulation for amazon echo
-emulated_hue:
-  host_ip: 192.168.1.1
-  advertise_ip: 192.168.1.1
-  expose_by_default: true
-
 # Sensors
 sensor:
   - platform: mqtt
