@@ -682,7 +682,7 @@
       state: 'not_home'
   action:
     service: vacuum.start
-    entity_id: vacuum.roborock
+    entity_id: vacuum.valetudo_roborock
 
 - alias: Publish solar watthours to MQTT and pvoutput
   trigger:

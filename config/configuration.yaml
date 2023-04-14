@@ -1107,36 +1107,6 @@ media_player:
   - platform: snapcast
     host: asrock
 
-vacuum:
-  - platform: mqtt
-    name: "Roborock"
-    schema: state
-    supported_features:
-      - start
-      - pause
-      - stop
-      - return_home
-      - battery
-      - status
-      - locate
-      - clean_spot
-      - fan_speed
-      - send_command
-    command_topic: "valetudo/rockrobo/command"
-    state_topic: "valetudo/rockrobo/state"
-    set_fan_speed_topic: "valetudo/rockrobo/set_fan_speed"
-    fan_speed_list:
-      - min
-      - medium
-      - high
-      - max
-    send_command_topic: 'valetudo/rockrobo/send_command'
-
-camera:
-  - platform: mqtt
-    name: "Roborock"
-    topic: "valetudo/rockrobo/MapData/map"
-
 utility_meter:
   energy:
     source: sensor.garden_house_kwh
