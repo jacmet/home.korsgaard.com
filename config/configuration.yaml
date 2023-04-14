@@ -1103,9 +1103,9 @@ media_player:
     host: tv
   - platform: mpd
     name: MPD
-    host: hp54
+    host: asrock
   - platform: snapcast
-    host: hp54
+    host: asrock
 
 vacuum:
   - platform: mqtt
