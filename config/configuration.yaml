@@ -256,6 +256,19 @@ mqtt:
       payload_off: "OFF"
       payload_available: "Online"
 
+  switch:
+    - name: "Garage door disable"
+      command_topic: "cmnd/sonoff-garage/ButtonTopic"
+      payload_off: "0"
+      payload_on: "disable"
+      availability_topic: "tele/sonoff-garage/LWT"
+      payload_available: "Online"
+
+    - name: "Zigbee2mqtt allow join"
+      state_topic: "zigbee2mqtt/bridge/config/permit_join"
+      command_topic: "zigbee2mqtt/bridge/config/permit_join"
+      payload_on: "true"
+      payload_off: "false"
 
 sensor:
   - platform: derivative
@@ -542,22 +555,6 @@ switch:
         turn_off:
           service: homeassistant.turn_off
           entity_id: input_boolean.holiday_mode
-
-  - platform: mqtt
-    name: "Garage door disable"
-    command_topic: "cmnd/sonoff-garage/ButtonTopic"
-    payload_off: "0"
-    payload_on: "disable"
-    availability_topic: "tele/sonoff-garage/LWT"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Zigbee2mqtt allow join"
-    state_topic: "zigbee2mqtt/bridge/config/permit_join"
-    command_topic: "zigbee2mqtt/bridge/config/permit_join"
-    payload_on: "true"
-    payload_off: "false"
 
 light:
   - platform: mqtt
