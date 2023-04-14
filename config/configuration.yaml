@@ -55,79 +55,184 @@ map:
 # Track the sun
 sun:
 
-# Sensors
+# MQTT
+mqtt:
+  sensor:
+    - name: "Attic temperature"
+      state_topic: "tele/sonoff-fanup/SENSOR"
+      value_template: >
+        {% set temp_offset = 1.6 %}
+        {{ (value_json.DS18B20.Temperature+temp_offset) | round(1) }}
+      availability_topic: "tele/sonoff-fanup/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "Sibe temperature"
+      state_topic: "tele/sonoff-temp/SENSOR"
+      value_template: >
+        {% set serial_number = '0301A2791B38' %}
+        {% set temp_offset = -0.6 %}
+        {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
+        {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
+      availability_topic: "tele/sonoff-temp/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "Lone temperature"
+      state_topic: "tele/sonoff-temp/SENSOR"
+      value_template: >
+        {% set serial_number = '0316A2798CEC' %}
+        {% set temp_offset = 1.8 %}
+        {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
+        {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
+      availability_topic: "tele/sonoff-temp/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "Bedroom temperature"
+      state_topic: "tele/sonoff-temp/SENSOR"
+      value_template: >
+        {% set serial_number = '0301A279483F' %}
+        {% set temp_offset = 0.4 %}
+        {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
+        {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
+      availability_topic: "tele/sonoff-temp/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "Garden house temperature"
+      state_topic: "tele/sonoff-power/SENSOR"
+      value_template: >
+        {{ value_json.BMP280.Temperature }}
+      availability_topic: "tele/sonoff-power/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "Garden house KWh"
+      state_topic: "tele/sonoff-power/SENSOR"
+      # 400 pulses/KWh
+      value_template: >
+        {{ value_json.COUNTER.C1 / 400 }}
+      availability_topic: "tele/sonoff-power/LWT"
+      device_class: "power"
+      unit_of_measurement: "KWh"
+      payload_available: "Online"
+
+    - name: "Solar Watthours"
+      state_topic: "tele/sonoff-temp/SENSOR"
+      value_template: >
+        {{ (value_json.COUNTER.C1 / 2 + value_json.COUNTER.C2 / 2) | int(0) }}
+      availability_topic: "tele/sonoff-temp/LWT"
+      device_class: "power"
+      unit_of_measurement: "WH"
+      payload_available: "Online"
+
+    - name: "RFID Tag"
+      state_topic: "tele/sonoff-rfid/SENSOR"
+      value_template: >
+        {{ value_json.RDM6300.UID }}
+      availability_topic: "tele/sonoff-rfid/LWT"
+      payload_available: "Online"
+
+    - name: Zigbee2mqtt Bridge state
+      state_topic: "zigbee2mqtt/bridge/state"
+      icon: mdi:router-wireless
+
+    - name: Zigbee2mqtt Version
+      state_topic: "zigbee2mqtt/bridge/config"
+      value_template: "{{ value_json.version }}"
+      icon: mdi:zigbee
+
+    - name: Coordinator Version
+      state_topic: "zigbee2mqtt/bridge/config"
+      value_template: "{{ value_json.coordinator.meta.revision }}"
+      icon: mdi:chip
+
+    - name: Telenet month
+      state_topic: "telenet/usage"
+      unit_of_measurement: "GB"
+      icon: mdi:network
+    - name: Telenet yesterday
+      state_topic: "telenet/delta"
+      unit_of_measurement: "GB"
+      icon: mdi:network
+    - name: Network total
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["total"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Sibe PC
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["sibe-pc"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Sibe GSM
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["sibe-a2"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Sibe Radio
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["hama"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Lone PC
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["lone-pc"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Lone GSM
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["lone-a2"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Lone Radio
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["tangent"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Evelyne PC
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["eve-pc"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Evelyne GSM
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["eve-a3"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Peter PC
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["dell"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Peter GSM
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["peter-a1"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Bedroom Chromecast
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["chromecast2"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network Garden Music
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["moto"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+    - name: Network TV
+      state_topic: 'telenet/per-host'
+      value_template: '{{ value_json["tv"] | default(0) }}'
+      unit_of_measurement: "MB"
+      icon: mdi:network
+
 sensor:
-  - platform: mqtt
-    name: "Attic temperature"
-    state_topic: "tele/sonoff-fanup/SENSOR"
-    value_template: >
-      {% set temp_offset = 1.6 %}
-      {{ (value_json.DS18B20.Temperature+temp_offset) | round(1) }}
-    availability_topic: "tele/sonoff-fanup/LWT"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "Sibe temperature"
-    state_topic: "tele/sonoff-temp/SENSOR"
-    value_template: >
-      {% set serial_number = '0301A2791B38' %}
-      {% set temp_offset = -0.6 %}
-      {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
-      {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
-    availability_topic: "tele/sonoff-temp/LWT"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "Lone temperature"
-    state_topic: "tele/sonoff-temp/SENSOR"
-    value_template: >
-      {% set serial_number = '0316A2798CEC' %}
-      {% set temp_offset = 1.8 %}
-      {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
-      {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
-    availability_topic: "tele/sonoff-temp/LWT"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "Bedroom temperature"
-    state_topic: "tele/sonoff-temp/SENSOR"
-    value_template: >
-      {% set serial_number = '0301A279483F' %}
-      {% set temp_offset = 0.4 %}
-      {% set selection = value_json.values() | list | selectattr('Id', 'eq', serial_number) | map(attribute='Temperature') | list %}
-      {{ (selection[0]+temp_offset) | round(1) if selection[0] > 0 else 0.0 }}
-    availability_topic: "tele/sonoff-temp/LWT"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "Garden house temperature"
-    state_topic: "tele/sonoff-power/SENSOR"
-    value_template: >
-      {{ value_json.BMP280.Temperature }}
-    availability_topic: "tele/sonoff-power/LWT"
-    device_class: "temperature"
-    unit_of_measurement: "°C"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "Garden house KWh"
-    state_topic: "tele/sonoff-power/SENSOR"
-    # 400 pulses/KWh
-    value_template: >
-      {{ value_json.COUNTER.C1 / 400 }}
-    availability_topic: "tele/sonoff-power/LWT"
-    device_class: "power"
-    unit_of_measurement: "KWh"
-    payload_available: "Online"
-
   - platform: derivative
     name: "Garden house W"
     source: sensor.garden_house_kwh
@@ -135,24 +240,6 @@ sensor:
     unit_prefix: 'm'
     unit_time: 'h'
     round: 0
-
-  - platform: mqtt
-    name: "Solar Watthours"
-    state_topic: "tele/sonoff-temp/SENSOR"
-    value_template: >
-      {{ (value_json.COUNTER.C1 / 2 + value_json.COUNTER.C2 / 2) | int(0) }}
-    availability_topic: "tele/sonoff-temp/LWT"
-    device_class: "power"
-    unit_of_measurement: "WH"
-    payload_available: "Online"
-
-  - platform: mqtt
-    name: "RFID Tag"
-    state_topic: "tele/sonoff-rfid/SENSOR"
-    value_template: >
-      {{ value_json.RDM6300.UID }}
-    availability_topic: "tele/sonoff-rfid/LWT"
-    payload_available: "Online"
 
   - platform: pvoutput
     system_id: 2652
@@ -181,148 +268,6 @@ sensor:
     name: External IP
     value_template: '{{ value_json.ip }}'
     scan_interval: 300
-
-  - platform: mqtt
-    name: "Blitzwolf Energy Today"
-    state_topic: "tele/blitzwolf/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Today"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Blitzwolf Energy Yesterday"
-    state_topic: "tele/blitzwolf/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Yesterday"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Blitzwolf Energy Total"
-    state_topic: "tele/blitzwolf/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Total"] }}'
-    unit_of_measurement: "kWh"
-  - platform: mqtt
-    name: "Blitzwolf Power"
-    state_topic: "tele/blitzwolf/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-    unit_of_measurement: "W"
-  - platform: mqtt
-    name: "Blitzwolf Voltage"
-    state_topic: "tele/blitzwolf/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Voltage"] }}'
-    unit_of_measurement: "V"
-  - platform: mqtt
-    name: "Blitzwolf Power Factor"
-    state_topic: "tele/blitzwolf/SENSOR"
-    value_template: '{{ value_json["ENERGY"]["Factor"] }}'
-
-    # Sensor for monitoring the bridge state
-  - platform: mqtt
-    name: Zigbee2mqtt Bridge state
-    state_topic: "zigbee2mqtt/bridge/state"
-    icon: mdi:router-wireless
-  - platform: mqtt
-    name: Zigbee2mqtt Version
-    state_topic: "zigbee2mqtt/bridge/config"
-    value_template: "{{ value_json.version }}"
-    icon: mdi:zigbee
-    # Sensor for Showing the Coordinator Version
-  - platform: mqtt
-    name: Coordinator Version
-    state_topic: "zigbee2mqtt/bridge/config"
-    value_template: "{{ value_json.coordinator.meta.revision }}"
-    icon: mdi:chip
-
-  - platform: mqtt
-    name: Telenet month
-    state_topic: "telenet/usage"
-    unit_of_measurement: "GB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Telenet yesterday
-    state_topic: "telenet/delta"
-    unit_of_measurement: "GB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network total
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["total"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Sibe PC
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["sibe-pc"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Sibe GSM
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["sibe-a2"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Sibe Radio
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["hama"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Lone PC
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["lone-pc"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Lone GSM
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["lone-a2"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Lone Radio
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["tangent"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Evelyne PC
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["eve-pc"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Evelyne GSM
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["eve-a3"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Peter PC
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["dell"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Peter GSM
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["peter-a1"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Bedroom Chromecast
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["chromecast2"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network Garden Music
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["moto"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
-  - platform: mqtt
-    name: Network TV
-    state_topic: 'telenet/per-host'
-    value_template: '{{ value_json["tv"] | default(0) }}'
-    unit_of_measurement: "MB"
-    icon: mdi:network
 
 rest_command:
   pvoutput_addstatus:
