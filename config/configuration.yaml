@@ -1131,13 +1131,6 @@ vacuum:
       - high
       - max
     send_command_topic: 'valetudo/rockrobo/send_command'
-  - platform: mqtt
-    name: Roomba
-    schema: state
-    supported_features:
-      - start
-      - stop
-    command_topic: 'roomba/command'
 
 camera:
   - platform: mqtt

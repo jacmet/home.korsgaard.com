@@ -668,29 +668,6 @@
     - service: homeassistant.toggle
       entity_id: light.sibe_bed
 
-- alias: Start roomba through Tasmota/IR
-  trigger:
-    platform: mqtt
-    topic: "roomba/command"
-    payload: "start"
-  action:
-    - service: mqtt.publish
-      data:
-        topic: 'cmnd/roomba/irsend'
-        payload: '0,2786,1008,864,2854,862,2856,864,2854,2784,1010,838,2878,840,2878,838,19502,2810,982,866,2852,868,2848,870,2850,2788,1006,866,2850,866,2852,868,19474,2786,1008,840,2878,840,2876,840,2878,2760,1032,834,2884,812,2904,834,19506,2788,1006,836,2880,838,2880,836,2882,2784,1010,862,2856,864,2852,864,19474,2764,1032,862,2854,866,2850,866,2852,2810,984,868,2850,868,2848,868,19474,2784,1010,838,2878,840,2880,838,2878,2786,1008,838,2880,840,2876,842,19500,2790,1006,868,2850,866,2850,868,2850,2788,1004,838,2880,838,2880,838,19504,2782,1010,814,2904,836,2882,836,2882,2762,1030,866,2854,866,2852,866,19476,2784,1010,838,2880,864,2854,864,2854,2784,1010,838,2880,840,2878,840'
-
-- alias: Run roomba on Thursdays at 10h
-  trigger:
-    platform: time
-    at: '10:00:00'
-  condition:
-    condition: time
-    weekday:
-      - thu
-  action:
-    service: vacuum.start
-    entity_id: vacuum.roomba
-
 - alias: Run roborock on Tuesdays and Thursdays at 10h if Peter is not home
   trigger:
     platform: time
