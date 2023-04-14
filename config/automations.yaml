@@ -941,7 +941,7 @@
     above: 75
   action:
     service: homeassistant.turn_off
-    entity_id: switch.tablet_charger
+    entity_id: switch.shelly1_tablet
 
 - alias: Turn on tablet charger when low
   trigger:
@@ -950,4 +950,4 @@
     below: 25
   action:
     service: homeassistant.turn_on
-    entity_id: switch.tablet_charger
+    entity_id: switch.shelly1_tablet
