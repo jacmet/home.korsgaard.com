@@ -1092,11 +1092,6 @@ binary_sensor:
           {% set n = now() %}
           {{ n.month in [1, 11, 12] }}
 
-notify:
-  - platform: nfandroidtv
-    name: TV
-    host: tv
-
 media_player:
   - platform: androidtv
     name: Android TV
