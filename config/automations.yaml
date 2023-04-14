@@ -366,7 +366,7 @@
 - alias: Turn on entrance wall light on motion after dark
   trigger:
     platform: state
-    entity_id: binary_sensor.zigbee_motion_sensor
+    entity_id: binary_sensor.motion_occupancy
     to: 'on'
   condition:
     condition: or
@@ -382,7 +382,7 @@
 - alias: Turn off entrance wall light 1 minute after motion after dark
   trigger:
     platform: state
-    entity_id: binary_sensor.zigbee_motion_sensor
+    entity_id: binary_sensor.motion_occupancy
     to: 'off'
     for:
       minutes: 1
@@ -484,10 +484,10 @@
 - alias: Alert about opening of doors when on holiday
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_contact
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.downstairs_sliding_door
+      entity_id: binary_sensor.down_slide_contact
       to: 'on'
   condition:
     condition: state
@@ -501,7 +501,7 @@
 - alias: Alert about leaving doors open for more than 10 mins
   trigger:
     - platform: state
-      entity_id: binary_sensor.front_door
+      entity_id: binary_sensor.front_door_contact
       from: 'off'
       to: 'on'
       for:

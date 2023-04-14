@@ -229,55 +229,6 @@ sensor:
     value_template: "{{ value_json.coordinator.meta.revision }}"
     icon: mdi:chip
 
-  - platform: "mqtt"
-    name: "front door sensor battery"
-    state_topic: "zigbee2mqtt/front_door"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
-  - platform: "mqtt"
-    name: "front door sensor signal"
-    state_topic: "zigbee2mqtt/front_door"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
-  - platform: "mqtt"
-    name: "downstairs sliding door sensor battery"
-    state_topic: "zigbee2mqtt/down_slide"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
-  - platform: "mqtt"
-    name: "downstairs sliding door sensor signal"
-    state_topic: "zigbee2mqtt/down_slide"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
-  - platform: "mqtt"
-    name: "Zigbee motion illuminance"
-    state_topic: "zigbee2mqtt/motion"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "-"
-    device_class: "illuminance"
-    value_template: "{{ value_json.illuminance }}"
-  - platform: "mqtt"
-    name: "Zigbee motion battery"
-    state_topic: "zigbee2mqtt/motion"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "%"
-    device_class: "battery"
-    value_template: "{{ value_json.battery }}"
-  - platform: "mqtt"
-    name: "Zigbee motion signal"
-    state_topic: "zigbee2mqtt/motion"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    icon: "mdi:signal"
-    unit_of_measurement: "lqi"
-    value_template: "{{ value_json.linkquality }}"
   - platform: mqtt
     name: Telenet month
     state_topic: "telenet/usage"
@@ -1009,30 +960,6 @@ light:
 binary_sensor:
   - platform: workday
     country: BE
-  - platform: "mqtt"
-    name: 'Front door'
-    state_topic: "zigbee2mqtt/front_door"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    payload_on: false
-    payload_off: true
-    value_template: "{{ value_json.contact }}"
-    device_class: "door"
-  - platform: "mqtt"
-    name: 'Downstairs sliding door'
-    state_topic: "zigbee2mqtt/down_slide"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    payload_on: false
-    payload_off: true
-    value_template: "{{ value_json.contact }}"
-    device_class: "door"
-  - platform: "mqtt"
-    name: 'Zigbee motion sensor'
-    state_topic: "zigbee2mqtt/motion"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    payload_on: true
-    payload_off: false
-    value_template: "{{ value_json.occupancy }}"
-    device_class: "motion"
   - platform: template
     sensors:
       sauna:
