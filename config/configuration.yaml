@@ -43,11 +43,6 @@ landroid_cloud:
   - email: !secret landroid_email
     password: !secret landroid_passwd
 
-# google calendar
-google:
-  client_id: !secret gcal_clientid
-  client_secret: !secret gcal_secret
-
 # Enables support for tracking state changes over time
 history:
 
