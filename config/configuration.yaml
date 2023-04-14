@@ -232,6 +232,31 @@ mqtt:
       unit_of_measurement: "MB"
       icon: mdi:network
 
+  cover:
+    - name: "Garage door"
+      command_topic: "cmnd/sonoff-garage/POWER"
+      payload_open: "ON"
+      payload_close: "ON"
+      payload_stop: "ON"
+      state_topic: "stat/sonoff-garage/DOOR"
+      state_open: "OPEN"
+      state_closed: "CLOSED"
+      state_opening: "OPENING"
+      state_closing: "CLOSING"
+      availability_topic: "tele/sonoff-garage/LWT"
+      payload_available: "Online"
+      device_class: "garage"
+
+  fan:
+    - name: "Upstairs fan"
+      state_topic: "stat/sonoff-fanup/POWER"
+      command_topic: "cmnd/sonoff-fanup/POWER"
+      availability_topic: "tele/sonoff-fanup/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+
 sensor:
   - platform: derivative
     name: "Garden house W"
@@ -445,34 +470,6 @@ device_tracker:
       lone_pc: 'lone-pc'
       peter_pc: 'dell'
       eve_pc: 'eve-pc'
-
-cover:
-  - platform: mqtt
-    name: "Garage door"
-    command_topic: "cmnd/sonoff-garage/POWER"
-    payload_open: "ON"
-    payload_close: "ON"
-    payload_stop: "ON"
-    state_topic: "stat/sonoff-garage/DOOR"
-    state_open: "OPEN"
-    state_closed: "CLOSED"
-    state_opening: "OPENING"
-    state_closing: "CLOSING"
-    availability_topic: "tele/sonoff-garage/LWT"
-    payload_available: "Online"
-    device_class: "garage"
-    qos: 0
-
-fan:
-  - platform: mqtt
-    name: "Upstairs fan"
-    state_topic: "stat/sonoff-fanup/POWER"
-    command_topic: "cmnd/sonoff-fanup/POWER"
-    availability_topic: "tele/sonoff-fanup/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
 
 input_boolean:
   holiday_mode:
