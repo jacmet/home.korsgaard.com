@@ -270,6 +270,273 @@ mqtt:
       payload_on: "true"
       payload_off: "false"
 
+  light:
+    - name: "switch 1 (s20-1)"
+      state_topic: "stat/sonoff-s20-1/POWER"
+      command_topic: "cmnd/sonoff-s20-1/POWER"
+      availability_topic: "tele/sonoff-s20-1/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "switch 2 (s20-2)"
+      state_topic: "stat/sonoff-s20-2/POWER"
+      command_topic: "cmnd/sonoff-s20-2/POWER"
+      availability_topic: "tele/sonoff-s20-2/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "switch 3 (s20-3)"
+      state_topic: "stat/sonoff-s20-3/POWER"
+      command_topic: "cmnd/sonoff-s20-3/POWER"
+      availability_topic: "tele/sonoff-s20-3/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Sonsock4 switch"
+      state_topic: "stat/sonsock4/POWER"
+      command_topic: "cmnd/sonsock4/POWER"
+      availability_topic: "tele/sonsock4/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Blitzwolf switch"
+      state_topic: "stat/blitzwolf/POWER"
+      command_topic: "cmnd/blitzwolf/POWER"
+      availability_topic: "tele/blitzwolf/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Blitzwolf2 switch"
+      state_topic: "stat/blitzwolf2/POWER"
+      command_topic: "cmnd/blitzwolf2/POWER"
+      availability_topic: "tele/blitzwolf2/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Blitzwolf3 switch"
+      state_topic: "stat/blitzwolf3/POWER"
+      command_topic: "cmnd/blitzwolf3/POWER"
+      availability_topic: "tele/blitzwolf3/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Blitzwolf4 switch"
+      state_topic: "stat/blitzwolf4/POWER"
+      command_topic: "cmnd/blitzwolf4/POWER"
+      availability_topic: "tele/blitzwolf4/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Pool"
+      state_topic: "stat/sonoff-pool/POWER1"
+      command_topic: "cmnd/sonoff-pool/POWER"
+      availability_topic: "tele/sonoff-pool/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+      qos: 0
+
+    - name: "Pool RGB"
+      state_topic: "stat/sonoff-pool/POWER3"
+      command_topic: "cmnd/sonoff-pool/POWER3"
+      availability_topic: "tele/sonoff-pool/LWT"
+      brightness_state_topic: "stat/sonoff-pool/Dimmer"
+      brightness_command_topic: "cmnd/sonoff-pool/Dimmer"
+      brightness_value_template: "{{ value_json.Dimmer }}"
+      brightness_scale: 100
+      rgb_state_topic: "stat/sonoff-pool/Color"
+      rgb_command_topic: "cmnd/sonoff-pool/Color2"
+      rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+      effect_state_topic: "stat/sonoff-pool/Scheme"
+      effect_command_topic: "cmnd/sonoff-pool/Scheme"
+      effect_value_template: "{{ value_json.Scheme }}"
+      effect_list:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Sauna"
+      state_topic: "stat/sonsauna/POWER"
+      command_topic: "cmnd/sonsauna/POWER"
+      availability_topic: "tele/sonsauna/LWT"
+      brightness_state_topic: "stat/sonsauna/Dimmer"
+      brightness_command_topic: "cmnd/sonsauna/Dimmer"
+      brightness_value_template: "{{ value_json.Dimmer }}"
+      brightness_scale: 100
+      rgb_state_topic: "stat/sonsauna/Color2"
+      rgb_command_topic: "cmnd/sonsauna/Color2"
+      rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+      effect_state_topic: "stat/sonsauna/Scheme"
+      effect_command_topic: "cmnd/sonsauna/Scheme"
+      effect_value_template: "{{ value_json.Scheme }}"
+      effect_list:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "sonRFID"
+      state_topic: "stat/sonoff-rfid/POWER"
+      command_topic: "cmnd/sonoff-rfid/POWER"
+      availability_topic: "tele/sonoff-rfid/LWT"
+      brightness_state_topic: "stat/sonoff-rfid/Dimmer"
+      brightness_command_topic: "cmnd/sonoff-rfid/Dimmer"
+      brightness_value_template: "{{ value_json.Dimmer }}"
+      brightness_scale: 100
+      rgb_state_topic: "stat/sonoff-rfid/Color2"
+      rgb_command_topic: "cmnd/sonoff-rfid/Color2"
+      rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+      effect_state_topic: "stat/sonoff-rfid/Scheme"
+      effect_command_topic: "cmnd/sonoff-rfid/Scheme"
+      effect_value_template: "{{ value_json.Scheme }}"
+      effect_list:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Garden "
+      state_topic: "stat/songarden/POWER"
+      command_topic: "cmnd/songarden/POWER"
+      availability_topic: "tele/songarden/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Living RGB bulb"
+      state_topic: "stat/bulb01/POWER"
+      command_topic: "cmnd/bulb01/POWER"
+      availability_topic: "tele/bulb01/LWT"
+      brightness_state_topic: "stat/bulb01/Dimmer"
+      brightness_command_topic: "cmnd/bulb01/Dimmer"
+      brightness_value_template: "{{ value_json.Dimmer }}"
+      brightness_scale: 100
+      rgb_state_topic: "stat/bulb01/Color"
+      rgb_command_topic: "cmnd/bulb01/Color2"
+      rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
+      effect_state_topic: "stat/bulb01/Scheme"
+      effect_command_topic: "cmnd/bulb01/Scheme"
+      effect_value_template: "{{ value_json.Scheme }}"
+      effect_list:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Stairs"
+      state_topic: "stat/sonoff-leds/POWER8"
+      command_topic: "cmnd/sonoff-leds/POWER8"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Terras"
+      state_topic: "stat/sonoff-leds/POWER7"
+      command_topic: "cmnd/sonoff-leds/POWER7"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Stars 1"
+      state_topic: "stat/sonoff-leds/POWER6"
+      command_topic: "cmnd/sonoff-leds/POWER6"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Stars 2"
+      state_topic: "stat/sonoff-leds/POWER5"
+      command_topic: "cmnd/sonoff-leds/POWER5"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Stars 3"
+      state_topic: "stat/sonoff-leds/POWER4"
+      command_topic: "cmnd/sonoff-leds/POWER4"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Stars 4"
+      state_topic: "stat/sonoff-leds/POWER3"
+      command_topic: "cmnd/sonoff-leds/POWER3"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Stars 5"
+      state_topic: "stat/sonoff-leds/POWER2"
+      command_topic: "cmnd/sonoff-leds/POWER2"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Bathroom LEDs"
+      state_topic: "stat/sonoff-leds/POWER1"
+      command_topic: "cmnd/sonoff-leds/POWER1"
+      availability_topic: "tele/sonoff-leds/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Living TV"
+      state_topic: "stat/sonoff-tv/POWER"
+      command_topic: "cmnd/sonoff-tv/POWER"
+      availability_topic: "tele/sonoff-tv/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+    - name: "Sibe lego"
+      state_topic: "stat/sonoff-ir/POWER"
+      command_topic: "cmnd/sonoff-ir/POWER"
+      availability_topic: "tele/sonoff-ir/LWT"
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+
+
 sensor:
   - platform: derivative
     name: "Garden house W"
@@ -555,346 +822,6 @@ switch:
         turn_off:
           service: homeassistant.turn_off
           entity_id: input_boolean.holiday_mode
-
-light:
-  - platform: mqtt
-    name: "switch 1 (s20-1)"
-    state_topic: "stat/sonoff-s20-1/POWER"
-    command_topic: "cmnd/sonoff-s20-1/POWER"
-    availability_topic: "tele/sonoff-s20-1/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "switch 2 (s20-2)"
-    state_topic: "stat/sonoff-s20-2/POWER"
-    command_topic: "cmnd/sonoff-s20-2/POWER"
-    availability_topic: "tele/sonoff-s20-2/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "switch 3 (s20-3)"
-    state_topic: "stat/sonoff-s20-3/POWER"
-    command_topic: "cmnd/sonoff-s20-3/POWER"
-    availability_topic: "tele/sonoff-s20-3/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Sonsock4 switch"
-    state_topic: "stat/sonsock4/POWER"
-    command_topic: "cmnd/sonsock4/POWER"
-    availability_topic: "tele/sonsock4/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Blitzwolf switch"
-    state_topic: "stat/blitzwolf/POWER"
-    command_topic: "cmnd/blitzwolf/POWER"
-    availability_topic: "tele/blitzwolf/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Blitzwolf2 switch"
-    state_topic: "stat/blitzwolf2/POWER"
-    command_topic: "cmnd/blitzwolf2/POWER"
-    availability_topic: "tele/blitzwolf2/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Blitzwolf3 switch"
-    state_topic: "stat/blitzwolf3/POWER"
-    command_topic: "cmnd/blitzwolf3/POWER"
-    availability_topic: "tele/blitzwolf3/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Blitzwolf4 switch"
-    state_topic: "stat/blitzwolf4/POWER"
-    command_topic: "cmnd/blitzwolf4/POWER"
-    availability_topic: "tele/blitzwolf4/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Pool"
-    state_topic: "stat/sonoff-pool/POWER1"
-    command_topic: "cmnd/sonoff-pool/POWER"
-    availability_topic: "tele/sonoff-pool/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Pool RGB"
-    state_topic: "stat/sonoff-pool/POWER3"
-    command_topic: "cmnd/sonoff-pool/POWER3"
-    availability_topic: "tele/sonoff-pool/LWT"
-    brightness_state_topic: "stat/sonoff-pool/Dimmer"
-    brightness_command_topic: "cmnd/sonoff-pool/Dimmer"
-    brightness_value_template: "{{ value_json.Dimmer }}"
-    brightness_scale: 100
-    rgb_state_topic: "stat/sonoff-pool/Color"
-    rgb_command_topic: "cmnd/sonoff-pool/Color2"
-    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
-    effect_state_topic: "stat/sonoff-pool/Scheme"
-    effect_command_topic: "cmnd/sonoff-pool/Scheme"
-    effect_value_template: "{{ value_json.Scheme }}"
-    effect_list:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Lounge"
-    state_topic: "stat/sonlounge/POWER"
-    command_topic: "cmnd/sonlounge/POWER"
-    availability_topic: "tele/sonlounge/LWT"
-    brightness_state_topic: "stat/sonlounge/Dimmer"
-    brightness_command_topic: "cmnd/sonlounge/Dimmer"
-    brightness_value_template: "{{ value_json.Dimmer }}"
-    brightness_scale: 100
-    rgb_state_topic: "stat/sonlounge/Color2"
-    rgb_command_topic: "cmnd/sonlounge/Color2"
-    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
-    effect_state_topic: "stat/sonlounge/Scheme"
-    effect_command_topic: "cmnd/sonlounge/Scheme"
-    effect_value_template: "{{ value_json.Scheme }}"
-    effect_list:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Sauna"
-    state_topic: "stat/sonsauna/POWER"
-    command_topic: "cmnd/sonsauna/POWER"
-    availability_topic: "tele/sonsauna/LWT"
-    brightness_state_topic: "stat/sonsauna/Dimmer"
-    brightness_command_topic: "cmnd/sonsauna/Dimmer"
-    brightness_value_template: "{{ value_json.Dimmer }}"
-    brightness_scale: 100
-    rgb_state_topic: "stat/sonsauna/Color2"
-    rgb_command_topic: "cmnd/sonsauna/Color2"
-    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
-    effect_state_topic: "stat/sonsauna/Scheme"
-    effect_command_topic: "cmnd/sonsauna/Scheme"
-    effect_value_template: "{{ value_json.Scheme }}"
-    effect_list:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "sonRFID"
-    state_topic: "stat/sonoff-rfid/POWER"
-    command_topic: "cmnd/sonoff-rfid/POWER"
-    availability_topic: "tele/sonoff-rfid/LWT"
-    brightness_state_topic: "stat/sonoff-rfid/Dimmer"
-    brightness_command_topic: "cmnd/sonoff-rfid/Dimmer"
-    brightness_value_template: "{{ value_json.Dimmer }}"
-    brightness_scale: 100
-    rgb_state_topic: "stat/sonoff-rfid/Color2"
-    rgb_command_topic: "cmnd/sonoff-rfid/Color2"
-    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
-    effect_state_topic: "stat/sonoff-rfid/Scheme"
-    effect_command_topic: "cmnd/sonoff-rfid/Scheme"
-    effect_value_template: "{{ value_json.Scheme }}"
-    effect_list:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      - 6
-      - 7
-      - 8
-      - 9
-      - 10
-      - 11
-      - 12
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Garden "
-    state_topic: "stat/songarden/POWER"
-    command_topic: "cmnd/songarden/POWER"
-    availability_topic: "tele/songarden/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Living RGB bulb"
-    state_topic: "stat/bulb01/POWER"
-    command_topic: "cmnd/bulb01/POWER"
-    availability_topic: "tele/bulb01/LWT"
-    brightness_state_topic: "stat/bulb01/Dimmer"
-    brightness_command_topic: "cmnd/bulb01/Dimmer"
-    brightness_value_template: "{{ value_json.Dimmer }}"
-    brightness_scale: 100
-    rgb_state_topic: "stat/bulb01/Color"
-    rgb_command_topic: "cmnd/bulb01/Color2"
-    rgb_command_template: "{{ '%02x%02x%02x' | format(red, green, blue)}}"
-    effect_state_topic: "stat/bulb01/Scheme"
-    effect_command_topic: "cmnd/bulb01/Scheme"
-    effect_value_template: "{{ value_json.Scheme }}"
-    effect_list:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Stairs"
-    state_topic: "stat/sonoff-leds/POWER8"
-    command_topic: "cmnd/sonoff-leds/POWER8"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Terras"
-    state_topic: "stat/sonoff-leds/POWER7"
-    command_topic: "cmnd/sonoff-leds/POWER7"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Stars 1"
-    state_topic: "stat/sonoff-leds/POWER6"
-    command_topic: "cmnd/sonoff-leds/POWER6"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Stars 2"
-    state_topic: "stat/sonoff-leds/POWER5"
-    command_topic: "cmnd/sonoff-leds/POWER5"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Stars 3"
-    state_topic: "stat/sonoff-leds/POWER4"
-    command_topic: "cmnd/sonoff-leds/POWER4"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Stars 4"
-    state_topic: "stat/sonoff-leds/POWER3"
-    command_topic: "cmnd/sonoff-leds/POWER3"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Stars 5"
-    state_topic: "stat/sonoff-leds/POWER2"
-    command_topic: "cmnd/sonoff-leds/POWER2"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Bathroom LEDs"
-    state_topic: "stat/sonoff-leds/POWER1"
-    command_topic: "cmnd/sonoff-leds/POWER1"
-    availability_topic: "tele/sonoff-leds/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Living TV"
-    state_topic: "stat/sonoff-tv/POWER"
-    command_topic: "cmnd/sonoff-tv/POWER"
-    availability_topic: "tele/sonoff-tv/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
-  - platform: mqtt
-    name: "Sibe lego"
-    state_topic: "stat/sonoff-ir/POWER"
-    command_topic: "cmnd/sonoff-ir/POWER"
-    availability_topic: "tele/sonoff-ir/LWT"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    qos: 0
-
 
 binary_sensor:
   - platform: workday
