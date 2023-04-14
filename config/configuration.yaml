@@ -118,38 +118,6 @@ sensor:
     payload_available: "Online"
 
   - platform: mqtt
-    name: "Zigbee temperature Bathroom"
-    state_topic: "zigbee2mqtt/temp_1_bathroom"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    value_template: "{{ value_json.temperature }}"
-
-  - platform: mqtt
-    name: "Zigbee temperature Sibe"
-    state_topic: "zigbee2mqtt/temp_2_sibe"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    value_template: "{{ value_json.temperature }}"
-
-  - platform: mqtt
-    name: "Zigbee temperature Lone"
-    state_topic: "zigbee2mqtt/temp_3_lone"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    value_template: "{{ value_json.temperature }}"
-
-  - platform: mqtt
-    name: "Zigbee temperature 4"
-    state_topic: "zigbee2mqtt/temp_4"
-    availability_topic: "zigbee2mqtt/bridge/state"
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    value_template: "{{ value_json.temperature }}"
-
-  - platform: mqtt
     name: "Garden house KWh"
     state_topic: "tele/sonoff-power/SENSOR"
     # 400 pulses/KWh
@@ -423,7 +391,7 @@ climate:
   - platform: generic_thermostat
     name: HA heating
     heater: switch.heating
-    target_sensor: sensor.zigbee_temperature_4
+    target_sensor: sensor.temp_4_temperature
     min_temp: 15
     max_temp: 25
     target_temp: 19.5
