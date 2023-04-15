@@ -925,12 +925,10 @@
         media_content_id: "{{ media_content_id }}"
         media_content_type: playlist
 
-- alias: Enable livingroom amplifier when starting to play
+- alias: Enable livingroom amplifier when unmuted
   trigger:
-    platform: state
-    entity_id: media_player.mpd
-    from: 'off'
-    to: 'playing'
+    platform: template
+    value_template: "{{ not state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed_3', 'is_volume_muted') }}"
   action:
     - service: rest_command.living_amp
 
