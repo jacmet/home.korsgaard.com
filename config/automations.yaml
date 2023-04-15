@@ -932,6 +932,22 @@
   action:
     - service: rest_command.living_amp
 
+- alias: Enable upstairs amplifier when unmuted
+  trigger:
+    platform: template
+    value_template: "{{ not state_attr('media_player.snapcast_client_e4_95_6e_43_8d_7b_3', 'is_volume_muted') }}"
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.upstairs_amplifier
+
+- alias: Disable upstairs amplifier when unmuted
+  trigger:
+    platform: template
+    value_template: "{{ state_attr('media_player.snapcast_client_e4_95_6e_43_8d_7b_3', 'is_volume_muted') }}"
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.upstairs_amplifier
+
 - alias: Turn off tablet charger when charged
   trigger:
     platform: numeric_state
