@@ -823,6 +823,15 @@ switch:
           service: homeassistant.turn_off
           entity_id: input_boolean.holiday_mode
 
+  - platform: rest
+    name: "upstairs amplifier"
+    resource: http://upstairs/cgi-bin/amp
+    body_on: '{"enable": "true"}'
+    body_off: '{"enable": "false"}'
+    is_on_template: "{{ value_json.enable }}"
+    headers:
+      Content-Type: application/json
+
 binary_sensor:
   - platform: workday
     country: BE
