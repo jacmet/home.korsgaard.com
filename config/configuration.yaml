@@ -557,12 +557,12 @@ sensor:
     sensors:
       volume_living:
         value_template: >
-          {{ (state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'volume_level') * 100) | int(0) }}
+          {{ (state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'volume_level') | float(0) * 100) | int(0) }}
         friendly_name: Living volume level
         icon_template: mdi:volume-medium
       volume_garden:
         value_template: >
-          {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') * 100) | int(0) }}
+          {{ (state_attr('media_player.snapcast_client_f0_fd_a0_10_92_79', 'volume_level') | float(0) * 100) | int(0) }}
         friendly_name: Garden volume level
         icon_template: mdi:volume-medium
 
