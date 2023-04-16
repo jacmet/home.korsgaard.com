@@ -850,9 +850,6 @@ binary_sensor:
           {{ n.month in [1, 11, 12] }}
 
 media_player:
-  - platform: androidtv
-    name: Android TV
-    host: tv
   - platform: mpd
     name: MPD
     host: asrock
