@@ -41,11 +41,6 @@ mobile_app:
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
-# landroid cloud custom component (https://github.com/MTrab/landroid_cloud)
-landroid_cloud:
-  - email: !secret landroid_email
-    password: !secret landroid_passwd
-
 # Enables support for tracking state changes over time
 history:
 
