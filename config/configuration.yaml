@@ -544,11 +544,6 @@ sensor:
     unit_time: 'h'
     round: 0
 
-  - platform: pvoutput
-    system_id: 2652
-    api_key: !secret pvoutput_apikey
-    scan_interval: 150
-
   - platform: template
     sensors:
       volume_living:
