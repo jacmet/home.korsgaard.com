@@ -55,6 +55,13 @@ sun:
 
 # MQTT
 mqtt:
+  button:
+    - name: "Clean kitchen"
+      unique_id: rockrobo_clean_kitchen
+      command_topic: "valetudo/rockrobo/MapSegmentationCapability/clean/set"
+      payload_press: '{"segment_ids": ["16"], "iterations": 1 }'
+      qos: 0
+      retain: false
   sensor:
     - name: "Attic temperature"
       state_topic: "tele/sonoff-fanup/SENSOR"
