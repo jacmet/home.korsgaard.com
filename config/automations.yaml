@@ -398,6 +398,7 @@
     entity_id: light.entrance_wall
 
 - alias: Automatically turn off light after 30 mins
+  id: auto-light-off-30mins
   trigger:
     - platform: state
       entity_id:
@@ -706,6 +707,7 @@
       entity_id: light.sauna
 
 - alias: Automatically turn off sauna leds 45 mins after sauna is no longer running
+  id: auto-sauna-light-off-45-mins
   trigger:
     - platform: state
       entity_id: binary_sensor.sauna
