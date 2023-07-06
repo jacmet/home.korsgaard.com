@@ -98,6 +98,26 @@ mqtt:
       payload_on: "1"
       payload_off: "0"
 
+    - name: "ES door"
+      state_topic: "tele/zigbee_es/0AC8/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.door.Contact }}
+      availability_topic: "tele/zigbee_es/LWT"
+      device_class: "door"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
+    - name: "ES motion"
+      state_topic: "tele/zigbee_es/8209/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.motion.Occupancy }}
+      availability_topic: "tele/zigbee_es/LWT"
+      device_class: "motion"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
   button:
     - name: "Clean kitchen"
       unique_id: rockrobo_clean_kitchen
@@ -338,6 +358,20 @@ mqtt:
       value_template: >
         {{ value_json.ZbReceived.motion.LinkQuality }}
       availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
+
+    - name: "ES door link"
+      state_topic: "tele/zigbee_dk/0AC8/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.door.LinkQuality }}
+      availability_topic: "tele/zigbee_es/LWT"
+      payload_available: "Online"
+
+    - name: "ES motion link"
+      state_topic: "tele/zigbee_es/8209/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.motion.LinkQuality }}
+      availability_topic: "tele/zigbee_es/LWT"
       payload_available: "Online"
 
   cover:
