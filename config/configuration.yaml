@@ -57,6 +57,47 @@ sun:
 
 # MQTT
 mqtt:
+  binary_sensor:
+    - name: "DK front door"
+      state_topic: "tele/zigbee_dk/6A71/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.frontdoor.Contact }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      device_class: "door"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
+    - name: "DK garden door"
+      state_topic: "tele/zigbee_dk/2B91/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.gardendoor.Contact }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      device_class: "door"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
+    - name: "DK anneks door"
+      state_topic: "tele/zigbee_dk/62EC/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.anneksdoor.Contact }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      device_class: "door"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
+    - name: "DK motion"
+      state_topic: "tele/zigbee_dk/4794/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.motion.Occupancy }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      device_class: "motion"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
   button:
     - name: "Clean kitchen"
       unique_id: rockrobo_clean_kitchen
@@ -238,6 +279,66 @@ mqtt:
       value_template: '{{ value_json["tv"] | default(0) }}'
       unit_of_measurement: "MB"
       icon: mdi:network
+
+    - name: "DK house temperature"
+      state_topic: "tele/zigbee_dk/1E40/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.housetemp.Temperature }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "DK anneks temperature"
+      state_topic: "tele/zigbee_dk/22A6/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.annekstemp.Temperature }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "DK house temperature link"
+      state_topic: "tele/zigbee_dk/1E40/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.housetemp.LinkQuality }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
+
+    - name: "DK anneks temperature link"
+      state_topic: "tele/zigbee_dk/22A6/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.annekstemp.LinkQuality }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
+
+    - name: "DK front door link"
+      state_topic: "tele/zigbee_dk/6A71/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.frontdoor.LinkQuality }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
+
+    - name: "DK garden door link"
+      state_topic: "tele/zigbee_dk/2B91/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.gardendoor.LinkQuality }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
+
+    - name: "DK anneks door link"
+      state_topic: "tele/zigbee_dk/62EC/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.anneksdoor.LinkQuality }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
+
+    - name: "DK motion link"
+      state_topic: "tele/zigbee_dk/4794/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.motion.LinkQuality }}
+      availability_topic: "tele/zigbee_dk/LWT"
+      payload_available: "Online"
 
   cover:
     - name: "Garage door"
