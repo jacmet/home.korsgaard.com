@@ -1051,9 +1051,9 @@ binary_sensor:
 media_player:
   - platform: mpd
     name: MPD
-    host: asrock
+    host: minis
   - platform: snapcast
-    host: asrock
+    host: minis
 
 utility_meter:
   energy:
