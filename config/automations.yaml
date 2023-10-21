@@ -942,7 +942,7 @@
     service: homeassistant.turn_on
     entity_id: switch.upstairs_amplifier
 
-- alias: Disable upstairs amplifier when unmuted
+- alias: Disable upstairs amplifier when muted
   trigger:
     platform: template
     value_template: "{{ state_attr('media_player.snapcast_client_e4_95_6e_43_8d_7b', 'is_volume_muted') }}"
