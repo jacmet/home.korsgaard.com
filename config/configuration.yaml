@@ -742,6 +742,10 @@ mqtt:
       payload_off: "OFF"
       payload_available: "Online"
 
+    - name: "Living LED pillar"
+      command_topic: "zigbee2mqtt/ir_tx/set"
+      payload_on: '{"ir_code_to_send": "CbQwCxgWAgwGFgLgCwFAF+ADA+ALAUAfAR50gEcB487gYgcCGJkB"}'
+      payload_off: '{"ir_code_to_send": "CaAw/RcWAhgGFgLgCwFAF+ADA+AHAUAbQAEBHnSARwfwzqAw/RcWAg=="}'
 
 sensor:
   - platform: derivative

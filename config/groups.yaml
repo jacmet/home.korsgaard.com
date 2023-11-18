@@ -6,6 +6,7 @@ entrance:
     - light.dinner_table
     - light.terras
     - light.switch_3_s20_3
+    - switch.blitzwolf_shp13
 
 kitchen:
   name: Kitchen
@@ -23,6 +24,7 @@ living:
     - light.living_office
     - light.living_tv
     - light.living_rgb_bulb
+    - light.living_led_pillar
 
 office:
   name: Office

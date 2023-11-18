@@ -157,6 +157,7 @@
     entity_id:
       - light.living_tv
       - light.living_rgb_bulb
+      - light.living_led_pillar
 
 - alias: Turn off TV light when digicorder is turned off or night
   trigger:
