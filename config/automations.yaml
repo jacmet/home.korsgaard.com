@@ -670,18 +670,19 @@
     - service: homeassistant.toggle
       entity_id: light.sibe_bed
 
-- alias: Run roborock on Tuesdays and Thursdays at 10h if Peter is not home
+- alias: Run roborock at 10h if parents are not home
   trigger:
     platform: time
     at: '10:00:00'
   condition:
-    - condition: time
-      weekday:
-        - tue
-        - thu
     - condition: state
-      entity_id: person.peter
+      entity_id: group.parents
       state: 'not_home'
+    - condition: state
+      entity_id: vacuum.valetudo_rockrobo
+      state: docked
+      for:
+        hours: 25
   action:
     service: vacuum.start
     entity_id: vacuum.valetudo_roborock
