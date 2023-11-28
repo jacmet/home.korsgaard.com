@@ -337,16 +337,7 @@
       - thu
       - fri
     - condition: state
-      entity_id: device_tracker.eve_pc
-      state: 'not_home'
-    - condition: state
-      entity_id: device_tracker.peter_pc
-      state: 'not_home'
-    - condition: state
-      entity_id: device_tracker.mi_a1
-      state: 'not_home'
-    - condition: state
-      entity_id: device_tracker.mi_a3
+      entity_id: group.parents
       state: 'not_home'
   action:
     - service: climate.set_preset_mode
