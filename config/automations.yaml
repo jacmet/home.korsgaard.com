@@ -460,8 +460,9 @@
     topic: "stat/sonoff-garage/POWER"
     payload: "ON"
   action:
-    - service: notify.mobile_app_peters_mi_a1
+    - service: notify.mobile_app_peko_a33
       data:
+        title: 'Warning'
         message: "Garage door opened by keypad"
 
 - alias: Alert about garage door keypad alarm
@@ -470,8 +471,9 @@
     topic: "stat/sonoff-garage/POWER2"
     payload: "ON"
   action:
-    - service: notify.mobile_app_peters_mi_a1
+    - service: notify.mobile_app_peko_a33
       data:
+        title: 'Warning'
         message: "Garage door keypad alarm triggered!"
 
 - alias: Alert about opening of doors when on holiday
@@ -487,8 +489,9 @@
     entity_id: input_boolean.holiday_mode
     state: 'on'
   action:
-    - service: notify.mobile_app_peters_mi_a1
+    - service: notify.mobile_app_peko_a33
       data_template:
+        title: 'Warning'
         message: "{{ trigger.to_state.attributes.friendly_name }} opened while on holiday!"
 
 - alias: Alert about leaving doors open for more than 10 mins
@@ -509,8 +512,9 @@
         minutes: 10
         seconds: 0
   action:
-    - service: notify.mobile_app_peters_mi_a1
+    - service: notify.mobile_app_peko_a33
       data:
+        title: 'Warning'
         message: "{{ trigger.to_state.attributes.friendly_name }} open for more than 10 mins!"
 
 - alias: Enable holiday mode when away
