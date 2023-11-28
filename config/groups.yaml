@@ -155,3 +155,17 @@ upstairs:
     - group.bathroom
     - group.bedroom
     - group.guestroom
+
+family:
+  name: Family
+  entities:
+    - person.peter
+    - person.evelyne
+    - person.lone
+    - person.sibe
+
+parents:
+  name: Parents
+  entities:
+    - person.peter
+    - person.evelyne
