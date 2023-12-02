@@ -964,3 +964,35 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.shelly1_tablet
+
+- alias: Alert on too low temperatures
+  trigger:
+    platform: numeric_state
+    entity_id:
+      - sensor.dk_house_temperature
+      - sensor.dk_anneks_temperature
+      - sensor.garden_house_temperature
+      - sensor.temp_4_temperature
+      - sensor.bedroom_temperature
+    below: 8
+  action:
+    - service: notify.mobile_app_peko_a33
+      data:
+        title: 'Too cold!'
+        message: "{{ trigger.to_state.state }} degC in {{ trigger.to_state.name }}"
+
+- alias: Alert on too high temperatures
+  trigger:
+    platform: numeric_state
+    entity_id:
+      - sensor.dk_house_temperature
+      - sensor.dk_anneks_temperature
+      - sensor.garden_house_temperature
+      - sensor.temp_4_temperature
+      - sensor.bedroom_temperature
+    above: 27
+  action:
+    - service: notify.mobile_app_peko_a33
+      data:
+        title: 'Too hot!'
+        message: "{{ trigger.to_state.state }} degC in {{ trigger.to_state.name }}"
