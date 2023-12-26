@@ -59,7 +59,7 @@ sun:
 mqtt:
   binary_sensor:
     - name: "DK front door"
-      state_topic: "tele/zigbee_dk/6A71/SENSOR"
+      state_topic: "tele/zigbee_dk/2D65/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.frontdoor.Contact }}
       availability_topic: "tele/zigbee_dk/LWT"
@@ -333,7 +333,7 @@ mqtt:
       payload_available: "Online"
 
     - name: "DK front door link"
-      state_topic: "tele/zigbee_dk/6A71/SENSOR"
+      state_topic: "tele/zigbee_dk/2D65/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.frontdoor.LinkQuality }}
       availability_topic: "tele/zigbee_dk/LWT"
@@ -375,7 +375,7 @@ mqtt:
       payload_available: "Online"
 
     - name: "DK front door battery"
-      state_topic: "tele/zigbee_dk/6A71/SENSOR"
+      state_topic: "tele/zigbee_dk/2D65/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.frontdoor.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
