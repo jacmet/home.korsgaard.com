@@ -309,7 +309,7 @@ mqtt:
       unit_of_measurement: "°C"
       payload_available: "Online"
 
-    - name: "DK anneks temperature"
+    - name: "DK anneks temperature raw"
       state_topic: "tele/zigbee_dk/22A6/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.annekstemp.Temperature }}
@@ -778,6 +778,13 @@ sensor:
     name: External IP
     value_template: '{{ value_json.ip }}'
     scan_interval: 300
+
+  - platform: statistics
+    name: "DK anneks temperature"
+    entity_id: sensor.dk_anneks_temperature_raw
+    state_characteristic: mean
+    max_age:
+      hours: 2
 
 rest_command:
   pvoutput_addstatus:
