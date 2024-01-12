@@ -380,6 +380,7 @@ mqtt:
         {{ value_json.ZbReceived.frontdoor.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "DK garden door battery"
@@ -388,6 +389,7 @@ mqtt:
         {{ value_json.ZbReceived.gardendoor.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "DK anneks door battery"
@@ -396,6 +398,7 @@ mqtt:
         {{ value_json.ZbReceived.anneksdoor.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "ES door battery"
@@ -404,6 +407,7 @@ mqtt:
         {{ value_json.ZbReceived.door.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_es/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "DK motion battery"
@@ -412,6 +416,7 @@ mqtt:
         {{ value_json.ZbReceived.motion.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "ES motion battery"
@@ -420,6 +425,7 @@ mqtt:
         {{ value_json.ZbReceived.motion.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_es/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "DK house temperature battery"
@@ -428,6 +434,7 @@ mqtt:
         {{ value_json.ZbReceived.housetemp.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
     - name: "DK anneks temperature battery"
@@ -436,6 +443,7 @@ mqtt:
         {{ value_json.ZbReceived.annekstemp.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "battery"
+      unit_of_measurement: "%"
       payload_available: "Online"
 
   cover:
