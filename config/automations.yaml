@@ -800,6 +800,24 @@
       {% endif %}
     entity_id: light.blitzwolf_switch
 
+- alias: Turn on entrance light when double clicking on zigbee button
+  trigger:
+    platform: state
+    entity_id: sensor.0xa4c13803a5d01950_action
+    to: 'double'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.entrance
+
+- alias: Turn off downstairs when single clicking on zigbee button
+  trigger:
+    platform: state
+    entity_id: sensor.0xa4c13803a5d01950_action
+    to: 'single'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.downstairs
+
 - alias: Living set volume
   initial_state: 'on'
   trigger:
