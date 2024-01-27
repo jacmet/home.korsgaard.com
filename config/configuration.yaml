@@ -118,6 +118,36 @@ mqtt:
       payload_on: "1"
       payload_off: "0"
 
+    - name: "CH front door"
+      state_topic: "tele/zigbee_ch/151F/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.frontdoor.Contact }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "door"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
+    - name: "CH outside door"
+      state_topic: "tele/zigbee_ch/DA6C/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.outdoor.Contact }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "door"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
+    - name: "CH motion"
+      state_topic: "tele/zigbee_ch/4140/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.motion.Occupancy }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "motion"
+      payload_available: "Online"
+      payload_on: "1"
+      payload_off: "0"
+
   button:
     - name: "Clean kitchen"
       unique_id: rockrobo_clean_kitchen
@@ -382,6 +412,31 @@ mqtt:
       availability_topic: "tele/zigbee_es/LWT"
       payload_available: "Online"
 
+    - name: "CH front door link"
+      state_topic: "tele/zigbee_ch/151F/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.frontdoor.LinkQuality }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      payload_available: "Online"
+
+    - name: "CH outside door link"
+      state_topic: "tele/zigbee_ch/DA6C/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.outdoor.LinkQuality }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      payload_available: "Online"
+
+    - name: "CH motion link"
+      state_topic: "tele/zigbee_ch/4140/SENSOR"
+      value_template: >
+        {% if value_json.ZbReceived.motion.LinkQuality > 0 %}
+          {{ value_json.ZbReceived.motion.LinkQuality }}
+        {% else %}
+          {{ states(entity_id) }}
+        {% endif %}
+      availability_topic: "tele/zigbee_ch/LWT"
+      payload_available: "Online"
+
     - name: "DK front door battery"
       state_topic: "tele/zigbee_dk/2D65/SENSOR"
       value_template: >
@@ -418,6 +473,24 @@ mqtt:
       unit_of_measurement: "%"
       payload_available: "Online"
 
+    - name: "CH front door battery"
+      state_topic: "tele/zigbee_ch/151F/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.frontdoor.BatteryPercentage | is_defined }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "battery"
+      unit_of_measurement: "%"
+      payload_available: "Online"
+
+    - name: "CH outside door battery"
+      state_topic: "tele/zigbee_ch/DA6C/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.outdoor.BatteryPercentage | is_defined }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "battery"
+      unit_of_measurement: "%"
+      payload_available: "Online"
+
     - name: "DK motion battery"
       state_topic: "tele/zigbee_dk/4794/SENSOR"
       value_template: >
@@ -432,6 +505,15 @@ mqtt:
       value_template: >
         {{ value_json.ZbReceived.motion.BatteryPercentage | is_defined }}
       availability_topic: "tele/zigbee_es/LWT"
+      device_class: "battery"
+      unit_of_measurement: "%"
+      payload_available: "Online"
+
+    - name: "CH motion battery"
+      state_topic: "tele/zigbee_ch/4140/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.motion.BatteryPercentage | is_defined }}
+      availability_topic: "tele/zigbee_ch/LWT"
       device_class: "battery"
       unit_of_measurement: "%"
       payload_available: "Online"
