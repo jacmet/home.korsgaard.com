@@ -356,12 +356,16 @@ mqtt:
     - name: "DK motion link"
       state_topic: "tele/zigbee_dk/4794/SENSOR"
       value_template: >
-        {{ value_json.ZbReceived.motion.LinkQuality }}
+        {% if value_json.ZbReceived.motion.LinkQuality > 0 %}
+          {{ value_json.ZbReceived.motion.LinkQuality }}
+        {% else %}
+          {{ states(entity_id) }}
+        {% endif %}
       availability_topic: "tele/zigbee_dk/LWT"
       payload_available: "Online"
 
     - name: "ES door link"
-      state_topic: "tele/zigbee_dk/0AC8/SENSOR"
+      state_topic: "tele/zigbee_es/0AC8/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.door.LinkQuality }}
       availability_topic: "tele/zigbee_es/LWT"
@@ -370,7 +374,11 @@ mqtt:
     - name: "ES motion link"
       state_topic: "tele/zigbee_es/8209/SENSOR"
       value_template: >
-        {{ value_json.ZbReceived.motion.LinkQuality }}
+        {% if value_json.ZbReceived.motion.LinkQuality > 0 %}
+          {{ value_json.ZbReceived.motion.LinkQuality }}
+        {% else %}
+          {{ states(entity_id) }}
+        {% endif %}
       availability_topic: "tele/zigbee_es/LWT"
       payload_available: "Online"
 
