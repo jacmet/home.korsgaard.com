@@ -437,6 +437,22 @@ mqtt:
       availability_topic: "tele/zigbee_ch/LWT"
       payload_available: "Online"
 
+    - name: "CH temperature"
+      state_topic: "tele/zigbee_ch/AB56/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.temperature.Temperature }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "temperature"
+      unit_of_measurement: "°C"
+      payload_available: "Online"
+
+    - name: "CH temperature link"
+      state_topic: "tele/zigbee_ch/AB56/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.temperature.LinkQuality }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      payload_available: "Online"
+
     - name: "DK front door battery"
       state_topic: "tele/zigbee_dk/2D65/SENSOR"
       value_template: >
