@@ -1014,3 +1014,25 @@
       data:
         title: 'Too hot!'
         message: "{{ trigger.to_state.state }} degC in {{ trigger.to_state.name }}"
+
+- alias: Alert on state changes after 48h
+  id: alert-on-state-change-after-48h
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.ch_front_door
+        - binary_sensor.ch_outside_door
+        - binary_sensor.dk_anneks_door
+        - binary_sensor.dk_front_door
+        - binary_sensor.dk_garden_door
+        - binary_sensor.dk_motion
+        - binary_sensor.es_door
+        - binary_sensor.es_motion
+  condition:
+    - condition: template
+      value_template: "{{ ((as_timestamp(now()) - as_timestamp(trigger.from_state.last_changed))/(60*60))|int > 48 }}"
+  action:
+    - service: notify.mobile_app_peko_a33
+      data:
+        title: 'Activity in {{ area_name(trigger.entity_id) }}'
+        message: "{{ trigger.to_state.name }} changed to {{ trigger.to_state.state }}"
