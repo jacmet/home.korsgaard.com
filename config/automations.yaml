@@ -665,6 +665,20 @@
     - service: homeassistant.toggle
       entity_id: light.sibe_bed
 
+- alias: Run roborock for kitchen at 9h30 mon-wed-fri
+  trigger:
+    platform: time
+    at: '09:30:00'
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - wed
+      - fri
+  action:
+    service: button.press
+    entity_id: button.clean_kitchen
+
 - alias: Run roborock at 10h if parents are not home
   trigger:
     platform: time
