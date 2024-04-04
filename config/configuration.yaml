@@ -59,6 +59,7 @@ sun:
 mqtt:
   binary_sensor:
     - name: "DK front door"
+      unique_id: "binary_sensor.dk_front_door"
       state_topic: "tele/zigbee_dk/2D65/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.frontdoor.Contact }}
@@ -69,6 +70,7 @@ mqtt:
       payload_off: "0"
 
     - name: "DK garden door"
+      unique_id: "binary_sensor.dk_garden_door"
       state_topic: "tele/zigbee_dk/2B91/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.gardendoor.Contact }}
@@ -79,6 +81,7 @@ mqtt:
       payload_off: "0"
 
     - name: "DK anneks door"
+      unique_id: "binary_sensor.dk_anneks_door"
       state_topic: "tele/zigbee_dk/62EC/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.anneksdoor.Contact }}
@@ -89,6 +92,7 @@ mqtt:
       payload_off: "0"
 
     - name: "DK motion"
+      unique_id: "binary_sensor.dk_motion"
       state_topic: "tele/zigbee_dk/4794/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.motion.Occupancy }}
@@ -99,6 +103,7 @@ mqtt:
       payload_off: "0"
 
     - name: "ES door"
+      unique_id: "binary_sensor.es_door"
       state_topic: "tele/zigbee_es/0AC8/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.door.Contact }}
@@ -109,6 +114,7 @@ mqtt:
       payload_off: "0"
 
     - name: "ES motion"
+      unique_id: "binary_sensor.es_motion"
       state_topic: "tele/zigbee_es/8209/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.motion.Occupancy }}
@@ -119,6 +125,7 @@ mqtt:
       payload_off: "0"
 
     - name: "CH front door"
+      unique_id: "binary_sensor.ch_front_door"
       state_topic: "tele/zigbee_ch/151F/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.frontdoor.Contact }}
@@ -129,6 +136,7 @@ mqtt:
       payload_off: "0"
 
     - name: "CH outside door"
+      unique_id: "binary_sensor.ch_outside_door"
       state_topic: "tele/zigbee_ch/DA6C/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.outdoor.Contact }}
@@ -139,6 +147,7 @@ mqtt:
       payload_off: "0"
 
     - name: "CH motion"
+      unique_id: "binary_sensor.ch_motion"
       state_topic: "tele/zigbee_ch/4140/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.motion.Occupancy }}
@@ -155,6 +164,7 @@ mqtt:
       payload_press: '{"segment_ids": ["16"], "iterations": 1 }'
       qos: 0
       retain: false
+
   sensor:
     - name: "Attic temperature"
       state_topic: "tele/sonoff-fanup/SENSOR"
@@ -331,6 +341,7 @@ mqtt:
       icon: mdi:network
 
     - name: "DK house temperature"
+      unique_id: "sensor.dk_house_temperature"
       state_topic: "tele/zigbee_dk/1E40/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.housetemp.Temperature }}
@@ -438,6 +449,7 @@ mqtt:
       payload_available: "Online"
 
     - name: "CH temperature"
+      unique_id: "sensor.ch_temperature"
       state_topic: "tele/zigbee_ch/AB56/SENSOR"
       value_template: >
         {{ value_json.ZbReceived.temperature.Temperature }}
