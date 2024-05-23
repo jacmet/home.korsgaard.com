@@ -16,6 +16,11 @@ kitchen:
     - light.kitchen_table
     - light.kitchen_wall
 
+kitchen-auto:
+  name: Kitchen Automation
+  entities:
+    - light.switch_3_s20_3
+
 living:
   name: Living
   entities:

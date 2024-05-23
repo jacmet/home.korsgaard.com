@@ -1050,3 +1050,27 @@
       data:
         title: 'Activity in {{ area_name(trigger.entity_id) }}'
         message: "{{ trigger.to_state.name }} changed to {{ trigger.to_state.state }}"
+
+- alias: Turn on kitchen lights at dinner time
+  trigger:
+    platform: time
+    at: '18:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.kitchen_auto
+
+- alias: Turn off kitchen lights at night
+  trigger:
+    platform: time
+    at: '22:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.kitchen_auto
