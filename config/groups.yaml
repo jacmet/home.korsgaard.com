@@ -116,6 +116,7 @@ downstairs-auto-off:
   name: Downstairs automation all-off
   entities:
     - light.switch_2_s20_2
+    - light.switch_3_s20_3
     - light.living_tv
     - light.living_rgb_bulb
     - light.living_led_pillar
