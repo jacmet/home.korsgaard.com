@@ -539,7 +539,7 @@
 - alias: Disable garage door at night when on holiday
   trigger:
     platform: time
-    at: '20:00:00'
+    at: '22:00:00'
   condition:
     condition: state
     entity_id: input_boolean.holiday_mode
