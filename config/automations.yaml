@@ -1051,6 +1051,24 @@
         title: 'Activity in {{ area_name(trigger.entity_id) }}'
         message: "{{ trigger.to_state.name }} changed to {{ trigger.to_state.state }}"
 
+- alias: Alert on device unavailable
+  trigger:
+    platform: state
+    entity_id:
+      - sensor.tasmota_last_restart_time_2
+      - sensor.tasmota_last_restart_time_3
+      - sensor.zigbeech_last_restart_time
+      - sensor.dsmr_ip_address
+      - binary_sensor.zigbee2mqtt_bridge_connection_state
+    to: "unavailable"
+    for:
+        minutes: 3
+  action:
+    - service: notify.mobile_app_peko_a33
+      data:
+        title: 'Device unavailable!'
+        message: "{{ trigger.to_state.name }} is offline"
+
 - alias: Turn on kitchen lights at dinner time
   trigger:
     platform: time
