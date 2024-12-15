@@ -1194,8 +1194,6 @@ switch:
       Content-Type: application/json
 
 binary_sensor:
-  - platform: workday
-    country: BE
   - platform: template
     sensors:
       sauna:
