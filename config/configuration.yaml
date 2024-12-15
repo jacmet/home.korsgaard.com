@@ -1210,8 +1210,6 @@ media_player:
   - platform: mpd
     name: MPD
     host: minis
-  - platform: snapcast
-    host: minis
 
 utility_meter:
   energy:
