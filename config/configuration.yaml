@@ -227,7 +227,7 @@ mqtt:
       value_template: >
         {{ value_json.COUNTER.C1 / 400 }}
       availability_topic: "tele/sonoff-power/LWT"
-      device_class: "power"
+      device_class: "energy"
       unit_of_measurement: "KWh"
       payload_available: "Online"
 
@@ -236,7 +236,7 @@ mqtt:
       value_template: >
         {{ (value_json.COUNTER.C1 / 2 + value_json.COUNTER.C2 / 2) | int(0) }}
       availability_topic: "tele/sonoff-temp/LWT"
-      device_class: "power"
+      device_class: "energy"
       unit_of_measurement: "WH"
       payload_available: "Online"
 
