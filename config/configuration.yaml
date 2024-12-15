@@ -1218,6 +1218,8 @@ utility_meter:
 
 system_health:
 
+default_config:
+
 # Cloud
 cloud:
 
