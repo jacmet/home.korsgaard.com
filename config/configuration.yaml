@@ -34,9 +34,6 @@ http:
   trusted_proxies:
     - 172.16.20.0/24
 
-# Discover some devices automatically
-discovery:
-
 # Access from mobile app
 mobile_app:
 
