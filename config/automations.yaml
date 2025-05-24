@@ -704,7 +704,7 @@
     - service: mqtt.publish
       data:
         topic: "solar/watthours"
-        payload_template: "{{ states.sensor.solar_watthours.state }}"
+        payload: "{{ states.sensor.solar_watthours.state }}"
         retain: true
     - service: rest_command.pvoutput_addstatus
 
