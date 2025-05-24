@@ -92,7 +92,9 @@ mqtt:
       unique_id: "binary_sensor.dk_motion"
       state_topic: "tele/zigbee_dk/4794/SENSOR"
       value_template: >
-        {{ value_json.ZbReceived.motion.Occupancy }}
+        {% if "Occupancy" in value_json.ZbReceived.motion %}
+          {{ value_json.ZbReceived.motion.Occupancy }}
+        {% endif %}
       availability_topic: "tele/zigbee_dk/LWT"
       device_class: "motion"
       payload_available: "Online"
@@ -114,7 +116,9 @@ mqtt:
       unique_id: "binary_sensor.es_motion"
       state_topic: "tele/zigbee_es/8209/SENSOR"
       value_template: >
-        {{ value_json.ZbReceived.motion.Occupancy }}
+        {% if "Occupancy" in value_json.ZbReceived.motion %}
+          {{ value_json.ZbReceived.motion.Occupancy }}
+        {% endif %}
       availability_topic: "tele/zigbee_es/LWT"
       device_class: "motion"
       payload_available: "Online"
@@ -147,7 +151,9 @@ mqtt:
       unique_id: "binary_sensor.ch_motion"
       state_topic: "tele/zigbee_ch/4140/SENSOR"
       value_template: >
-        {{ value_json.ZbReceived.motion.Occupancy }}
+        {% if "Occupancy" in value_json.ZbReceived.motion %}
+          {{ value_json.ZbReceived.motion.Occupancy }}
+        {% endif %}
       availability_topic: "tele/zigbee_ch/LWT"
       device_class: "motion"
       payload_available: "Online"
