@@ -1106,15 +1106,6 @@ knx:
       address: "4/0/2"
       state_address: "4/1/2"
 
-device_tracker:
-  - platform: ping
-    hosts:
-      digicorder: 'livingtv'
-      sibe_pc: 'sibe-pc'
-      lone_pc: 'lone-pc'
-      peter_pc: 'dell'
-      eve_pc: 'eve-pc'
-
 input_boolean:
   holiday_mode:
     name: "away on holiday"
