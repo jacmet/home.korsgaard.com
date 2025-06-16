@@ -816,18 +816,22 @@
 
 - alias: Turn on entrance light when double clicking on zigbee button
   trigger:
-    platform: state
-    entity_id: sensor.button_action
-    to: 'double'
+    trigger: device
+    domain: mqtt
+    device_id: a19f421fa9d85fe96032bf37cb91ac9e # button
+    type: action
+    subtype: double
   action:
     service: homeassistant.turn_on
     entity_id: group.entrance
 
 - alias: Turn off downstairs when single clicking on zigbee button
   trigger:
-    platform: state
-    entity_id: sensor.button_action
-    to: 'single'
+    trigger: device
+    domain: mqtt
+    device_id: a19f421fa9d85fe96032bf37cb91ac9e # button
+    type: action
+    subtype: single
   action:
     service: homeassistant.turn_off
     entity_id: group.downstairs
