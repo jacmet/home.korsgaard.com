@@ -537,6 +537,16 @@ mqtt:
       unit_of_measurement: "%"
       payload_available: "Online"
 
+    - name: "CH temperature battery"
+      unique_id: "sensor.ch_temperature_battery"
+      state_topic: "tele/zigbee_ch/AB56/SENSOR"
+      value_template: >
+        {{ value_json.ZbReceived.temperature.BatteryPercentage | is_defined }}
+      availability_topic: "tele/zigbee_ch/LWT"
+      device_class: "battery"
+      unit_of_measurement: "%"
+      payload_available: "Online"
+
     - name: "DK motion battery"
       unique_id: "sensor.dk_motion_battery"
       state_topic: "tele/zigbee_dk/4794/SENSOR"
