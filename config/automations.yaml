@@ -429,7 +429,7 @@
 - alias: Turn on Sibes lego light at 21:00
   trigger:
     platform: time
-    at: '21:00:00'
+    at: '22:00:00'
   action:
     service: homeassistant.turn_on
     entity_id: light.sibe_lego
