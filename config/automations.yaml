@@ -818,7 +818,7 @@
   trigger:
     trigger: device
     domain: mqtt
-    device_id: a19f421fa9d85fe96032bf37cb91ac9e # button
+    device_id: b9de2a3491dfb61de91f4017184f9448 # button
     type: action
     subtype: double
   action:
@@ -829,7 +829,7 @@
   trigger:
     trigger: device
     domain: mqtt
-    device_id: a19f421fa9d85fe96032bf37cb91ac9e # button
+    device_id: b9de2a3491dfb61de91f4017184f9448 # button
     type: action
     subtype: single
   action:
