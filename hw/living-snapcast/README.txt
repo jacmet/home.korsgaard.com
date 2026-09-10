@@ -1,13 +1,28 @@
 Living room Musicpd Player
 
-GL.iNet 6416A running OpenWrt, configured in wifi client mode.
+Originally using openwrt on LL.iNet 6416A, configured in wifi client mode.
 
 https://openwrt.org/toh/gl.inet/64xx
 
 USB audio interface and mpd-mini musicpd package. Music files accessed
-over NFS, which is mounted at bootup by /etc/rc.local.
+over NFS, which is mounted at bootup by /etc/rc.local and USB audio
+card. Attiny power from internal connectors and reset controlled by
+GPIO.
 
-USB audio connected to Onkyo TX-SR307 receiver, which has an Onkyo RI
+
+Replaced 2026/09 by esphome on a hifi-esp32s3 board:
+
+https://lectronz.com/products/hifi-esp32
+
+With the Attiny reset from the "ethernet reset" GPIO, available on
+the w5500 connector (together with gnd/3v3).
+
+Esphome config based on hifi-esp32-s3-idf-snapclient.yaml from:
+
+https://github.com/sonocotta/esp32-audio-dock/commit/eb19d91eba79887761947d636086b4130583e620
+
+
+Audio connected to Onkyo TX-SR307 receiver, which has an Onkyo RI
 input for control. RI interface to a attiny85 "digispark" clone, with
 simple Arduino code based on Onkyo-RI:
 
