@@ -960,12 +960,12 @@
         media_content_id: "{{ media_content_id }}"
         media_content_type: playlist
 
-- alias: Enable livingroom amplifier when unmuted
-  trigger:
-    platform: template
-    value_template: "{{ not state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'is_volume_muted') }}"
-  action:
-    - service: rest_command.living_amp
+# - alias: Enable livingroom amplifier when unmuted
+#   trigger:
+#     platform: template
+#     value_template: "{{ not state_attr('media_player.snapcast_client_e4_95_6e_40_0a_ed', 'is_volume_muted') }}"
+#   action:
+#     - service: rest_command.living_amp
 
 # - alias: Enable upstairs amplifier when unmuted
 #   trigger:

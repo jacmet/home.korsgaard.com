@@ -953,8 +953,8 @@ rest_command:
       X-Pvoutput-Apikey: !secret pvoutput_apikey
       X-Pvoutput-SystemId: 2652
 
-  living_amp:
-    url: "http://glinet/cgi-bin/amp"
+  # living_amp:
+  #   url: "http://glinet/cgi-bin/amp"
 
 # Text to speech
 tts:
