@@ -1,0 +1,33 @@
+#!/bin/sh
+# Hackish JSON API to control amplifier power through serial
+# connection to atmega328 with a basic relay-on/relay-off/relay-state
+# protocol.
+# JSON API expects an objection with an enable boolean, E.G.:
+# { "enable": true }
+
+HEADER="Content-type: application/json\r\n\r\n%s\n"
+
+PORT=/dev/ttyS1
+
+# local echo screws up serial protocol
+stty -F $PORT -echo
+
+if [ "$REQUEST_METHOD" = "POST" ]; then
+    if dd bs="$CONTENT_LENGTH" count=1 | strings | sed 's/[{},]\+/\n/g' | grep -q '"enable".*true'; then
+	echo relay-on > $PORT
+    else
+	echo relay-off > $PORT
+    fi
+fi
+
+# get current relay state
+{
+    echo relay-state > $PORT
+    read -r STATE
+} < $PORT
+
+if [ "$STATE" = "on" ]; then
+    printf "$HEADER" "{ \"enable\": true }"
+else
+    printf "$HEADER" "{ \"enable\": false }"
+fi
